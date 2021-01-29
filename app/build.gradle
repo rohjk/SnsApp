@@ -63,7 +63,7 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Verision"
     implementation "com.google.dagger:dagger-android:$rootProject.dagger2Verision"
     implementation "com.google.dagger:dagger-android-support:$rootProject.dagger2Verision"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger2Verision"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Verision"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
