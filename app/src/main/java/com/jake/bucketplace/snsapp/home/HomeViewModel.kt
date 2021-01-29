@@ -31,9 +31,24 @@ class HomeViewModel @Inject constructor(
     val popularUsers: LiveData<List<User>>
         get() = _popularUsers
 
+    private val _isLoading = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     init {
+        loadHome()
+    }
+
+    fun refresh() {
+        loadHome()
+    }
+
+    private fun loadHome() {
+        _isLoading.value = true
         dispose.add(
-            homeRepository.getHome().observeOn(schedulers).subscribe({ home ->
+            homeRepository.getHome().observeOn(schedulers).doFinally {
+                _isLoading.value = false
+            }.subscribe({ home ->
                 _popularCards.value = home.popularCards
                 _popularUsers.value = home.papularUsers
             }, { error ->

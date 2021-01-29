@@ -4,10 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home.HomeFragment">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jake.bucketplace.snsapp.home.HomeViewModel" />
+    </data>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/homeSwipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:onRefreshListener="@{() -> viewModel.refresh()}"
+        app:refreshing="@{viewModel.isLoading()}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

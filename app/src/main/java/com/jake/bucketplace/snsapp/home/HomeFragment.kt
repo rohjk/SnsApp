@@ -11,7 +11,7 @@ import com.jake.bucketplace.snsapp.SnsApplication
 import com.jake.bucketplace.snsapp.databinding.FragmentHomeBinding
 import javax.inject.Inject
 
-class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
+class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var swipeContainer: SwipeRefreshLayout
@@ -35,11 +35,12 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     ): View? {
         this.binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.apply {
-            this@HomeFragment.swipeContainer = homeSwipeContainer
+            lifecycleOwner = this@HomeFragment
+            viewModel = this@HomeFragment.viewModel
             homePapularCardsListView.adapter = popularCardListAdapter
             homePapularUsersListView.adapter = popularUserListAdapter
+            this@HomeFragment.swipeContainer = homeSwipeContainer
         }
-
         subscribeUI()
         return binding.root
     }
@@ -58,7 +59,4 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         super.onDestroy()
     }
 
-    override fun onRefresh() {
-
-    }
 }
