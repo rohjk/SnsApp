@@ -1,8 +1,8 @@
 package com.jake.bucketplace.snsapp.domain.repository
 
 import com.jake.bucketplace.snsapp.domain.model.Home
-import io.reactivex.Flowable
+import io.reactivex.Single
 
 interface HomeRepository {
-    fun getHome(): Flowable<Home>
+    fun getHome(): Single<Home>
 }
