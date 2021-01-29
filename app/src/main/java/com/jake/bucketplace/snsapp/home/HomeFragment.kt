@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.observe
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.jake.bucketplace.snsapp.SnsApplication
 import com.jake.bucketplace.snsapp.databinding.FragmentHomeBinding
@@ -14,7 +15,12 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var swipeContainer: SwipeRefreshLayout
-
+    private val popularCardListAdapter: PopularCardListAdapter by lazy {
+        PopularCardListAdapter(emptyList())
+    }
+    private val popularUserListAdapter: PopularUserListAdapter by lazy {
+        PopularUserListAdapter(emptyList())
+    }
     @Inject
     lateinit var viewModel: HomeViewModel
 
@@ -30,10 +36,21 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         this.binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.apply {
             this@HomeFragment.swipeContainer = homeSwipeContainer
+            homePapularCardsListView.adapter = popularCardListAdapter
+            homePapularUsersListView.adapter = popularUserListAdapter
         }
 
-
+        subscribeUI()
         return binding.root
+    }
+
+    private fun subscribeUI() {
+        viewModel.popularCards.observe(viewLifecycleOwner) {
+            popularCardListAdapter.update(it)
+        }
+        viewModel.popularUsers.observe(viewLifecycleOwner) {
+            popularUserListAdapter.update(it)
+        }
     }
 
     override fun onDestroy() {
