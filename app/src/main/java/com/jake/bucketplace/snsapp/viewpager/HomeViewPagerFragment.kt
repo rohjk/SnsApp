@@ -1,4 +1,4 @@
-package com.jake.bucketplace.snsapp.home
+package com.jake.bucketplace.snsapp.viewpager
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

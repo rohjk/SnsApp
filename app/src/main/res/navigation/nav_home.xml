@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeViewPagerFragment"
-        android:name="com.jake.bucketplace.snsapp.home.HomeViewPagerFragment"
+        android:name="com.jake.bucketplace.snsapp.viewpager.HomeViewPagerFragment"
         android:label="fragment_home_view_pager"
         tools:layout="@layout/fragment_home_view_pager" />
 </navigation>
