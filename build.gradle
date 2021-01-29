@@ -5,6 +5,8 @@ buildscript {
         dagger2Verision = "2.31.2"
         retrofitVersion = "2.9.0"
         gsonVersion = "2.8.6"
+        fragmentKtxVersion = "1.2.5"
+        navigationVersion = '2.2.0'
     }
     repositories {
         google()
