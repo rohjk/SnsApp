@@ -7,6 +7,7 @@ buildscript {
         gsonVersion = "2.8.6"
         fragmentKtxVersion = "1.2.5"
         navigationVersion = '2.2.0'
+        lifecycle_version = "2.2.0"
     }
     repositories {
         google()
