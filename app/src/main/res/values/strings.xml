@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SnsApp</string>
+
+    <string name="home">홈</string>
+    <string name="photo_feed">사진피드</string>
+
 </resources>
