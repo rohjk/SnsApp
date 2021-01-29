@@ -71,4 +71,9 @@ dependencies {
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
+
+    //Rx
+    //Rx
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxVersion"
 }
