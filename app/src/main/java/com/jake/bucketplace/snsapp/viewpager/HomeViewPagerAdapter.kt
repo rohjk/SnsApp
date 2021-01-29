@@ -2,18 +2,24 @@ package com.jake.bucketplace.snsapp.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.jake.bucketplace.snsapp.home.HomeFragment
+import java.lang.IndexOutOfBoundsException
 
 const val HOME_PAGE_INDEX = 0
 const val PHOTO_FEED_PAGE_INDEX = 1
 
 class HomeViewPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
 
+    private val tabFragmentsCreator: Map<Int, () -> Fragment> = mapOf(
+        HOME_PAGE_INDEX to { HomeFragment() }
+    )
+
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return tabFragmentsCreator.size
     }
 
     override fun createFragment(position: Int): Fragment {
-        TODO("Not yet implemented")
+        return tabFragmentsCreator[position]?.invoke() ?: throw IndexOutOfBoundsException()
     }
 
 }

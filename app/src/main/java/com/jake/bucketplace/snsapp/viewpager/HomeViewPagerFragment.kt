@@ -27,9 +27,11 @@ class HomeViewPagerFragment : Fragment() {
             this@HomeViewPagerFragment.viewPager = homeViewPager
         }
 
+        viewPager.adapter = HomeViewPagerAdapter(this)
+
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = getTabTitle(position)
-        }
+        }.attach()
 
         return binding.root
     }
