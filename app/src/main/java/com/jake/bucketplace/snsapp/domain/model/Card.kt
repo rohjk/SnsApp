@@ -1,4 +1,4 @@
-package com.jake.bucketplace.snsapp.domain
+package com.jake.bucketplace.snsapp.domain.model
 
 data class Card(
     val id: Long,

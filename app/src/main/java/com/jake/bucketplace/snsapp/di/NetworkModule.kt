@@ -1,5 +1,6 @@
 package com.jake.bucketplace.snsapp.di
 
+import com.jake.bucketplace.snsapp.data.network.HomeServiceApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -17,6 +18,11 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+    }
+
+    @Provides
+    fun provideHomeServiceApi(retrofit: Retrofit): HomeServiceApi {
+        return retrofit.create(HomeServiceApi::class.java)
     }
 
 }

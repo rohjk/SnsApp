@@ -1,4 +1,4 @@
-package com.jake.bucketplace.snsapp.data
+package com.jake.bucketplace.snsapp.data.model
 
 import com.google.gson.annotations.SerializedName
 
