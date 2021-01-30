@@ -1,10 +1,12 @@
 package com.jake.bucketplace.snsapp.signin
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.jake.bucketplace.snsapp.R
@@ -17,6 +19,7 @@ class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     @Inject
     lateinit var viewModel: SignInViewModel
+    private lateinit var manager: InputMethodManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,8 @@ class SignInFragment : Fragment() {
             fragment = this@SignInFragment
             viewModel = this@SignInFragment.viewModel
         }
+
+        this.manager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         subscribe()
         return binding.root
@@ -54,6 +59,7 @@ class SignInFragment : Fragment() {
             val nickName = signInNickName.text.toString()
             val password = signInPassword.text.toString()
             viewModel?.signIn(nickName, password)
+            manager?.hideSoftInputFromWindow(root.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         }
     }
 
