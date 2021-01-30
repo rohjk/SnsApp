@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.R
 import com.jake.bucketplace.snsapp.adapters.CardHorizontalListAdapter
-import com.jake.bucketplace.snsapp.databinding.ItemListPopularBinding
+import com.jake.bucketplace.snsapp.databinding.ItemListWithTitleBinding
 import com.jake.bucketplace.snsapp.domain.model.Card
 
 class PopularCardsViewHolder constructor(
-    private val binding: ItemListPopularBinding
+    private val binding: ItemListWithTitleBinding
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: List<Card>) {
         binding.apply {
-            itemPopularTitle.text = binding.root.context.getString(R.string.home_popular_cards_title)
-            homePopularListView.adapter = CardHorizontalListAdapter(item)
+            itemListTitle.text = binding.root.context.getString(R.string.home_popular_cards_title)
+            itemListView.adapter = CardHorizontalListAdapter(item)
             executePendingBindings()
         }
     }
@@ -22,7 +22,7 @@ class PopularCardsViewHolder constructor(
     companion object {
         fun from(parent: ViewGroup): PopularCardsViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ItemListPopularBinding.inflate(layoutInflater, parent, false)
+            val binding = ItemListWithTitleBinding.inflate(layoutInflater, parent, false)
             return PopularCardsViewHolder(binding)
         }
     }
