@@ -14,7 +14,7 @@ import javax.inject.Inject
 class CardDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentCardDetailBinding
-    val args: CardDetailFragmentArgs by navArgs()
+    private val args: CardDetailFragmentArgs by navArgs()
 
     @Inject
     lateinit var viewModel: CardDetailViewModel

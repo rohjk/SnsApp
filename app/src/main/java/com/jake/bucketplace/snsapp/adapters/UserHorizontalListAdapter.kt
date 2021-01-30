@@ -3,7 +3,9 @@ package com.jake.bucketplace.snsapp.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.jake.bucketplace.snsapp.NavHomeDirections
 import com.jake.bucketplace.snsapp.databinding.ItemHorizontalUserBinding
 import com.jake.bucketplace.snsapp.domain.model.User
 
@@ -20,8 +22,13 @@ class UserHorizontalListAdapter constructor(
             }
         }
         init {
-            binding.setClickListener { view ->
-                Toast.makeText(view.context, "${binding.user?.nickName}", Toast.LENGTH_SHORT).show()
+            binding.apply {
+                setClickListener { view ->
+                    user?.apply {
+                        val direction = NavHomeDirections.actionGlobalUserDetailFragment(id)
+                        view.findNavController().navigate(direction)
+                    }
+                }
             }
         }
     }

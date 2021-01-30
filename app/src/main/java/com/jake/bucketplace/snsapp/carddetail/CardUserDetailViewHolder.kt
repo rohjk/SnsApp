@@ -2,7 +2,9 @@ package com.jake.bucketplace.snsapp.carddetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.jake.bucketplace.snsapp.NavHomeDirections
 import com.jake.bucketplace.snsapp.R
 import com.jake.bucketplace.snsapp.databinding.ItemVerticalUserBinding
 import com.jake.bucketplace.snsapp.domain.model.User
@@ -15,6 +17,17 @@ class CardUserDetailViewHolder constructor(
             user = item
             executePendingBindings()
             itemUserNickName.text = binding.root.context.getString(R.string.card_detail_user_nickname, item.nickName)
+        }
+    }
+
+    init {
+        binding.apply {
+            setClickListener { view ->
+                user?.apply {
+                    val direction = NavHomeDirections.actionGlobalUserDetailFragment(id)
+                    view.findNavController().navigate(direction)
+                }
+            }
         }
     }
 

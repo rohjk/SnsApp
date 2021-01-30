@@ -27,4 +27,13 @@
             android:name="cardId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.jake.bucketplace.snsapp.userdetail.UserDetailFragment"
+        android:label="fragment_user_detail"
+        tools:layout="@layout/fragment_user_detail" >
+        <argument
+            android:name="userId"
+            app:argType="long" />
+    </fragment><action android:id="@+id/action_global_userDetailFragment" app:destination="@id/userDetailFragment"/>
 </navigation>
