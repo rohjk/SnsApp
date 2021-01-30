@@ -11,4 +11,8 @@ class MainViewModel @Inject constructor(
 
     val isSignIn: LiveData<Boolean> = authManager.isSignIn
 
+    fun signOut() {
+        authManager.signOut()
+    }
+
 }

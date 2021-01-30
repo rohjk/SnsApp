@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun singOut() {
-
+    fun signOut() {
+        viewModel.signOut()
     }
 }
