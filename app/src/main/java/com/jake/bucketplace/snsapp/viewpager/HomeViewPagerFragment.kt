@@ -44,4 +44,9 @@ class HomeViewPagerFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        binding?.unbind()
+        super.onDestroy()
+    }
+
 }

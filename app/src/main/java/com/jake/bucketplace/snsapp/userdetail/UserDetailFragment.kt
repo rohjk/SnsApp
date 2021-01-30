@@ -47,4 +47,9 @@ class UserDetailFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        binding?.unbind()
+        super.onDestroy()
+    }
+
 }
