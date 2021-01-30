@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".photofeed.PhotoFeedFragment">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jake.bucketplace.snsapp.photofeed.PhotoFeedViewModel" />
+    </data>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
