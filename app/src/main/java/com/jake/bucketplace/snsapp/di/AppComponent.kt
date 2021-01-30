@@ -4,6 +4,7 @@ import android.content.Context
 import com.jake.bucketplace.snsapp.carddetail.CardDetailComponent
 import com.jake.bucketplace.snsapp.home.HomeComponent
 import com.jake.bucketplace.snsapp.photofeed.PhotoFeedComponent
+import com.jake.bucketplace.snsapp.userdetail.UserDetailComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -19,4 +20,5 @@ interface AppComponent {
     fun homeComponent(): HomeComponent.Factory
     fun photoFeedComponent(): PhotoFeedComponent.Factory
     fun cardDeatilComponent(): CardDetailComponent.Factory
+    fun userDeatilComponent(): UserDetailComponent.Factory
 }
