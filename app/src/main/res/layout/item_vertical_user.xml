@@ -32,7 +32,7 @@
                 style="@style/text_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/user_nickname(user.nickName)}"
+                android:text="@{@string/user_detail_user_nickname(user.nickName)}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Name" />

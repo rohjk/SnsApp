@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".userdetail.UserDetailFragment">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jake.bucketplace.snsapp.userdetail.UserDetailViewModel" />
+    </data>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/userDetailSwipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:onRefreshListener="@{() -> viewModel.refresh()}"
+        app:refreshing="@{viewModel.isLoading()}">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/userDetailListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_vertical_user"/>
+            tools:listitem="@layout/item_vertical_user" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
