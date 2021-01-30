@@ -1,9 +1,11 @@
 package com.jake.bucketplace.snsapp.di
 
 import android.content.Context
+import com.jake.bucketplace.snsapp.MainActivity
 import com.jake.bucketplace.snsapp.carddetail.CardDetailComponent
 import com.jake.bucketplace.snsapp.home.HomeComponent
 import com.jake.bucketplace.snsapp.photofeed.PhotoFeedComponent
+import com.jake.bucketplace.snsapp.signup.SignUpComponent
 import com.jake.bucketplace.snsapp.userdetail.UserDetailComponent
 import dagger.BindsInstance
 import dagger.Component
@@ -24,8 +26,10 @@ interface AppComponent {
         fun create(@BindsInstance context: Context): AppComponent
     }
 
+    fun inject(mainActivity: MainActivity): MainActivity
     fun homeComponent(): HomeComponent.Factory
     fun photoFeedComponent(): PhotoFeedComponent.Factory
     fun cardDeatilComponent(): CardDetailComponent.Factory
     fun userDeatilComponent(): UserDetailComponent.Factory
+    fun signUpComponent(): SignUpComponent.Factory
 }

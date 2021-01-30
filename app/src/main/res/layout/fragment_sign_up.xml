@@ -5,6 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".signup.SignUpFragment">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jake.bucketplace.snsapp.signup.SignUpViewModel" />
+        <variable
+            name="fragment"
+            type="com.jake.bucketplace.snsapp.signup.SignUpFragment" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signup"
+            android:onClick="@{() -> fragment.singUp()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

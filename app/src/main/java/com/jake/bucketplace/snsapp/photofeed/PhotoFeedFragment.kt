@@ -23,8 +23,7 @@ class PhotoFeedFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity?.application as SnsApplication).appComponent.photoFeedComponent().create()
-            .inject(this)
+        (activity?.application as SnsApplication).appComponent.photoFeedComponent().create().inject(this)
     }
 
     override fun onCreateView(
