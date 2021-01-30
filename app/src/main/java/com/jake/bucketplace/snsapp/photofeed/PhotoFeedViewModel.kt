@@ -14,10 +14,9 @@ import javax.inject.Inject
 
 class PhotoFeedViewModel @Inject constructor(
     private val cardRepository: CardRepository,
-    @MainScheduler private val scheduler: Scheduler
+    @MainScheduler private val scheduler: Scheduler,
+    private val disposable: CompositeDisposable
 ) : BaseViewModel() {
-
-    private val dispose = CompositeDisposable()
 
     companion object {
         private const val TAG = "PhotoFeedViewModel"
@@ -32,7 +31,7 @@ class PhotoFeedViewModel @Inject constructor(
     }
 
     override fun onCleared() {
-        dispose.clear()
+        disposable.clear()
         super.onCleared()
     }
 
@@ -49,7 +48,7 @@ class PhotoFeedViewModel @Inject constructor(
 
     private fun loadCard(forceUpdate: Boolean) {
         _isLoading.value = true
-        dispose.add(
+        disposable.add(
             cardRepository.getCards(forceUpdate).observeOn(scheduler).doFinally {
                 _isLoading.value = false
             }.subscribe({ cards ->

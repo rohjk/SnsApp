@@ -3,7 +3,6 @@ package com.jake.bucketplace.snsapp.userdetail
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.jake.bucketplace.snsapp.BaseViewModel
 import com.jake.bucketplace.snsapp.di.MainScheduler
 import com.jake.bucketplace.snsapp.domain.model.User
@@ -14,18 +13,22 @@ import javax.inject.Inject
 
 class UserDetailViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    @MainScheduler private val scheduler: Scheduler
+    @MainScheduler private val scheduler: Scheduler,
+    private val disposable: CompositeDisposable
 ) : BaseViewModel() {
 
     companion object {
         private const val TAG = "UserDetailViewModel"
     }
 
-    private val dispose = CompositeDisposable()
-
     private val _user = MutableLiveData<User>()
     val user: LiveData<User>
         get() = _user
+
+    override fun onCleared() {
+        disposable.clear()
+        super.onCleared()
+    }
 
     override fun refresh() {
         val userId = _user.value?.id ?: -1
@@ -38,7 +41,7 @@ class UserDetailViewModel @Inject constructor(
 
     private fun loadUser(id: Long) {
         _isLoading.value = true
-        dispose.add(
+        disposable.add(
             userRepository.getUser(id).observeOn(scheduler).doFinally {
                 _isLoading.value = false
             }.subscribe({
