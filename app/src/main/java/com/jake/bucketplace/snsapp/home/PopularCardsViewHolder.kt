@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.R
-import com.jake.bucketplace.snsapp.adapters.CardListAdapter
+import com.jake.bucketplace.snsapp.adapters.CardHorizontalListAdapter
 import com.jake.bucketplace.snsapp.databinding.ItemListPopularBinding
 import com.jake.bucketplace.snsapp.domain.model.Card
 
@@ -14,7 +14,7 @@ class PopularCardsViewHolder constructor(
     fun bind(item: List<Card>) {
         binding.apply {
             itemPopularTitle.text = binding.root.context.getString(R.string.home_popular_cards_title)
-            homePopularListView.adapter = CardListAdapter(item)
+            homePopularListView.adapter = CardHorizontalListAdapter(item)
             executePendingBindings()
         }
     }
