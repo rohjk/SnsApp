@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding.unbind()
+        binding?.unbind()
         super.onDestroy()
     }
 

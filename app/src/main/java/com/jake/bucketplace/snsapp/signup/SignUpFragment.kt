@@ -37,6 +37,11 @@ class SignUpFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroy() {
+        binding?.unbind()
+        super.onDestroy()
+    }
+
     fun subscribe() {
         viewModel.isSignIn.observe(viewLifecycleOwner) { isSignUp ->
             if(isSignUp) {

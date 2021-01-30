@@ -27,11 +27,11 @@ class AuthManagerImpl @Inject constructor(
     }
 
     override fun signIn(nickName: String, password: String): Completable {
-        return userRepository.singIn(nickName, password).flatMapCompletable { userId ->
+        return userRepository.singIn(nickName, password).observeOn(scheduler).flatMapCompletable { userId ->
             auth.userId = userId
             updateStatus()
             Completable.complete()
-        }.observeOn(scheduler)
+        }
     }
 
     override fun signOut(): Completable {

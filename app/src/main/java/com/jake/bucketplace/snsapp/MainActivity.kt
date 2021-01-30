@@ -48,12 +48,17 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
+    override fun onDestroy() {
+        binding?.unbind()
+        super.onDestroy()
+    }
+
     fun signUp() {
         this.navController.navigate(NavHomeDirections.actionGlobalSignUpFragment())
     }
 
     fun signIn() {
-
+        this.navController.navigate(NavHomeDirections.actionGlobalSignInFragment())
     }
 
     fun signOut() {
