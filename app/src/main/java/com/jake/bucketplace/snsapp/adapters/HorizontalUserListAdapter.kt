@@ -2,16 +2,15 @@ package com.jake.bucketplace.snsapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.NavHomeDirections
 import com.jake.bucketplace.snsapp.databinding.ItemHorizontalUserBinding
 import com.jake.bucketplace.snsapp.domain.model.User
 
-class UserHorizontalListAdapter constructor(
+class HorizontalUserListAdapter constructor(
     private var users: List<User>
-) : RecyclerView.Adapter<UserHorizontalListAdapter.UserViewHolder>() {
+) : RecyclerView.Adapter<HorizontalUserListAdapter.UserViewHolder>() {
 
     class UserViewHolder constructor(private val binding: ItemHorizontalUserBinding) :
         RecyclerView.ViewHolder(binding.root) {

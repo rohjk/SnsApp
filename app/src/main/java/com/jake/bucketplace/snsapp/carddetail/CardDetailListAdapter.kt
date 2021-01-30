@@ -20,7 +20,7 @@ class CardDetailListAdapter constructor(
         val itemList: MutableList<DataItem> = mutableListOf()
         itemList.add(DataItem.CardItem(cardDetail.card))
         itemList.add(DataItem.UserItem(cardDetail.user))
-        itemList.add(DataItem.RecomendCardsItem(cardDetail.recomendCards))
+        itemList.add(DataItem.RecommendCardsItem(cardDetail.recomendCards))
         this.items = itemList
         notifyDataSetChanged()
     }
@@ -29,15 +29,15 @@ class CardDetailListAdapter constructor(
         return when (items[position]) {
             is DataItem.CardItem -> ITEM_VIEW_TYPE_IMAGE_DETAIL
             is DataItem.UserItem -> ITEM_VIEW_TYPE_USER_DETAIL
-            is DataItem.RecomendCardsItem -> ITEM_VIEW_TYPE_RECOMMEND_CARDS
+            is DataItem.RecommendCardsItem -> ITEM_VIEW_TYPE_RECOMMEND_CARDS
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ITEM_VIEW_TYPE_IMAGE_DETAIL -> CardImageDetailViewHolder.from(parent)
-            ITEM_VIEW_TYPE_USER_DETAIL -> CardUserDetailViewHolder.from(parent)
-            ITEM_VIEW_TYPE_RECOMMEND_CARDS -> RecomendCardsViewHolder.from(parent)
+            ITEM_VIEW_TYPE_IMAGE_DETAIL -> CardDetailImageDetailViewHolder.from(parent)
+            ITEM_VIEW_TYPE_USER_DETAIL -> CardDetailUserDetailViewHolder.from(parent)
+            ITEM_VIEW_TYPE_RECOMMEND_CARDS -> RecommendCardsViewHolder.from(parent)
             else -> throw ClassCastException("Unknown viewType ${viewType}")
         }
     }
@@ -46,17 +46,17 @@ class CardDetailListAdapter constructor(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is CardImageDetailViewHolder -> {
+            is CardDetailImageDetailViewHolder -> {
                 val cards = items[position] as DataItem.CardItem
                 holder.bind(cards.card)
             }
-            is CardUserDetailViewHolder -> {
+            is CardDetailUserDetailViewHolder -> {
                 val users = items[position] as DataItem.UserItem
                 holder.bind(users.user)
             }
-            is RecomendCardsViewHolder -> {
-                val recomandCards = items[position] as DataItem.RecomendCardsItem
-                holder.bind(recomandCards.cards)
+            is RecommendCardsViewHolder -> {
+                val recommendCards = items[position] as DataItem.RecommendCardsItem
+                holder.bind(recommendCards.cards)
             }
         }
     }
@@ -73,7 +73,7 @@ sealed class DataItem {
         override val id = user.hashCode().toLong()
     }
 
-    data class RecomendCardsItem(val cards: List<Card>) : DataItem() {
+    data class RecommendCardsItem(val cards: List<Card>) : DataItem() {
         override val id = cards.hashCode().toLong()
     }
 

@@ -9,7 +9,7 @@ import com.jake.bucketplace.snsapp.R
 import com.jake.bucketplace.snsapp.databinding.ItemVerticalUserBinding
 import com.jake.bucketplace.snsapp.domain.model.User
 
-class CardUserDetailViewHolder constructor(
+class CardDetailUserDetailViewHolder constructor(
     private val  binding: ItemVerticalUserBinding
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: User) {
@@ -32,10 +32,10 @@ class CardUserDetailViewHolder constructor(
     }
 
     companion object {
-        fun from(parent: ViewGroup): CardUserDetailViewHolder {
+        fun from(parent: ViewGroup): CardDetailUserDetailViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ItemVerticalUserBinding.inflate(layoutInflater, parent, false)
-            return CardUserDetailViewHolder(binding)
+            return CardDetailUserDetailViewHolder(binding)
         }
     }
 }

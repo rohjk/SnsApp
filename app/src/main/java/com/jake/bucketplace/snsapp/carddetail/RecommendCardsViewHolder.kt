@@ -4,26 +4,26 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.R
-import com.jake.bucketplace.snsapp.adapters.CardHorizontalListAdapter
-import com.jake.bucketplace.snsapp.databinding.ItemListWithTitleBinding
+import com.jake.bucketplace.snsapp.adapters.HorizontalCardListAdapter
+import com.jake.bucketplace.snsapp.databinding.ItemHorizontalListWithTitleBinding
 import com.jake.bucketplace.snsapp.domain.model.Card
 
-class RecomendCardsViewHolder constructor(
-    private val binding: ItemListWithTitleBinding
+class RecommendCardsViewHolder constructor(
+    private val binding: ItemHorizontalListWithTitleBinding
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: List<Card>) {
         binding.apply {
             itemListTitle.text = binding.root.context.getString(R.string.card_detail_recomend_cards_title)
-            itemListView.adapter = CardHorizontalListAdapter(item)
+            itemListView.adapter = HorizontalCardListAdapter(item)
             executePendingBindings()
         }
     }
 
     companion object {
-        fun from(parent: ViewGroup): RecomendCardsViewHolder {
+        fun from(parent: ViewGroup): RecommendCardsViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ItemListWithTitleBinding.inflate(layoutInflater, parent, false)
-            return RecomendCardsViewHolder(binding)
+            val binding = ItemHorizontalListWithTitleBinding.inflate(layoutInflater, parent, false)
+            return RecommendCardsViewHolder(binding)
         }
     }
 }

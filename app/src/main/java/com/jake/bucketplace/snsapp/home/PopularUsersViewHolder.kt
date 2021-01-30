@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.R
-import com.jake.bucketplace.snsapp.adapters.UserHorizontalListAdapter
-import com.jake.bucketplace.snsapp.databinding.ItemListWithTitleBinding
+import com.jake.bucketplace.snsapp.adapters.HorizontalUserListAdapter
+import com.jake.bucketplace.snsapp.databinding.ItemHorizontalListWithTitleBinding
 import com.jake.bucketplace.snsapp.domain.model.User
 
 class PopularUsersViewHolder constructor(
-    private val binding: ItemListWithTitleBinding
+    private val binding: ItemHorizontalListWithTitleBinding
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: List<User>) {
         binding.apply {
             itemListTitle.text = binding.root.context.getString(R.string.home_popular_users_title)
-            itemListView.adapter = UserHorizontalListAdapter(item)
+            itemListView.adapter = HorizontalUserListAdapter(item)
             executePendingBindings()
         }
     }
@@ -22,7 +22,7 @@ class PopularUsersViewHolder constructor(
     companion object {
         fun from(parent: ViewGroup): PopularUsersViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ItemListWithTitleBinding.inflate(layoutInflater, parent, false)
+            val binding = ItemHorizontalListWithTitleBinding.inflate(layoutInflater, parent, false)
             return PopularUsersViewHolder(binding)
         }
     }

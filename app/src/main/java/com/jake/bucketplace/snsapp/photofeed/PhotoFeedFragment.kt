@@ -9,14 +9,14 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.SnsApplication
-import com.jake.bucketplace.snsapp.adapters.CardVerticalListAdapter
+import com.jake.bucketplace.snsapp.adapters.VerticalCardListAdapter
 import com.jake.bucketplace.snsapp.databinding.FragmentPhotoFeedBinding
 import javax.inject.Inject
 
 class PhotoFeedFragment : Fragment() {
 
     private lateinit var binding: FragmentPhotoFeedBinding
-    private lateinit var adapter: CardVerticalListAdapter
+    private lateinit var adapterCard: VerticalCardListAdapter
     private lateinit var recyclerView: RecyclerView
     @Inject
     lateinit var viewModel: PhotoFeedViewModel
@@ -32,11 +32,11 @@ class PhotoFeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this.binding = FragmentPhotoFeedBinding.inflate(inflater, container, false)
-        this.adapter = CardVerticalListAdapter(emptyList())
+        this.adapterCard = VerticalCardListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@PhotoFeedFragment
             viewModel = this@PhotoFeedFragment.viewModel
-            photoFeedListView.adapter = adapter
+            photoFeedListView.adapter = adapterCard
             this@PhotoFeedFragment.recyclerView = photoFeedListView
         }
 
@@ -56,7 +56,7 @@ class PhotoFeedFragment : Fragment() {
 
     private fun subscribeUI() {
         viewModel.cards.observe(viewLifecycleOwner) { items ->
-            adapter.update(items)
+            adapterCard.update(items)
         }
     }
 

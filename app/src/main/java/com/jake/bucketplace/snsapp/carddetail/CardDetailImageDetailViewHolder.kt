@@ -3,11 +3,11 @@ package com.jake.bucketplace.snsapp.carddetail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.jake.bucketplace.snsapp.databinding.ItemCardImageDetailBinding
+import com.jake.bucketplace.snsapp.databinding.ItemCardImageWithDescriptionBinding
 import com.jake.bucketplace.snsapp.domain.model.Card
 
-class CardImageDetailViewHolder constructor(
-    private val  binding: ItemCardImageDetailBinding
+class CardDetailImageDetailViewHolder constructor(
+    private val  binding: ItemCardImageWithDescriptionBinding
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: Card) {
         binding.apply {
@@ -16,10 +16,10 @@ class CardImageDetailViewHolder constructor(
     }
 
     companion object {
-        fun from(parent: ViewGroup): CardImageDetailViewHolder {
+        fun from(parent: ViewGroup): CardDetailImageDetailViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ItemCardImageDetailBinding.inflate(layoutInflater, parent, false)
-            return CardImageDetailViewHolder(binding)
+            val binding = ItemCardImageWithDescriptionBinding.inflate(layoutInflater, parent, false)
+            return CardDetailImageDetailViewHolder(binding)
         }
     }
 }
