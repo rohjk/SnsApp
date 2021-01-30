@@ -3,10 +3,10 @@
 
     <string name="home">홈</string>
     <string name="photo_feed">사진피드</string>
-    
+
     <string name="home_popular_cards_title">인기카드 : 카드를 클릭해보세요.</string>
     <string name="home_popular_users_title">인기유저 : 유저를 클릭해보세요.</string>
-    
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
