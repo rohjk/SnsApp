@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.jake.bucketplace.snsapp.BaseViewModel
 import com.jake.bucketplace.snsapp.di.MainScheduler
 import com.jake.bucketplace.snsapp.domain.model.Card
 import com.jake.bucketplace.snsapp.domain.model.Home
@@ -16,7 +17,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val homeRepository: HomeRepository,
     @MainScheduler private val schedulers: Scheduler
-) : ViewModel() {
+) : BaseViewModel() {
 
     companion object {
         private const val TAG = "HomeViewModel"
@@ -28,15 +29,11 @@ class HomeViewModel @Inject constructor(
     val home: LiveData<Home>
         get() = _home
 
-    private val _isLoading = MutableLiveData<Boolean>(false)
-    val isLoading: LiveData<Boolean>
-        get() = _isLoading
-
     init {
         loadHome()
     }
 
-    fun refresh() {
+    override fun refresh() {
         loadHome()
     }
 

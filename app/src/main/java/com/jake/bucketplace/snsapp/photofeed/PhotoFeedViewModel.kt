@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.jake.bucketplace.snsapp.BaseViewModel
 import com.jake.bucketplace.snsapp.di.MainScheduler
 import com.jake.bucketplace.snsapp.domain.model.Card
 import com.jake.bucketplace.snsapp.domain.repository.CardRepository
@@ -14,7 +15,7 @@ import javax.inject.Inject
 class PhotoFeedViewModel @Inject constructor(
     private val cardRepository: CardRepository,
     @MainScheduler private val scheduler: Scheduler
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val dispose = CompositeDisposable()
 
@@ -25,10 +26,6 @@ class PhotoFeedViewModel @Inject constructor(
     private val _cards = MutableLiveData<List<Card>>()
     val cards: LiveData<List<Card>>
         get() = _cards
-
-    private val _isLoading = MutableLiveData<Boolean>(false)
-    val isLoading: LiveData<Boolean>
-        get() = _isLoading
 
     init {
         loadCard(true)
@@ -46,7 +43,7 @@ class PhotoFeedViewModel @Inject constructor(
         }
     }
 
-    fun refresh() {
+    override fun refresh() {
         loadCard(true)
     }
 

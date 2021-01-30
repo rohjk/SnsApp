@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.jake.bucketplace.snsapp.BaseViewModel
 import com.jake.bucketplace.snsapp.di.MainScheduler
 import com.jake.bucketplace.snsapp.domain.model.CardDetail
 import com.jake.bucketplace.snsapp.domain.repository.CardRepository
@@ -14,7 +15,7 @@ import javax.inject.Inject
 class CardDetailViewModel @Inject constructor(
     private val cardRepository: CardRepository,
     @MainScheduler private val scheduler: Scheduler
-): ViewModel(){
+): BaseViewModel(){
 
     companion object {
         private const val TAG = "CardDetailViewModel"
@@ -26,15 +27,11 @@ class CardDetailViewModel @Inject constructor(
     val cardDetail: LiveData<CardDetail>
         get() = _cardDetail
 
-    private val _isLoading = MutableLiveData<Boolean>(false)
-    val isLoading: LiveData<Boolean>
-        get() = _isLoading
-
     fun setCardId(id: Long) {
        loadCardDeatil(id)
     }
 
-    fun refresh() {
+    override fun refresh() {
         val id = _cardDetail.value?.card?.id ?: -1
         loadCardDeatil(id)
     }
