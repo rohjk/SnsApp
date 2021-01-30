@@ -4,6 +4,7 @@ import com.jake.bucketplace.snsapp.data.model.mapper.CardMapper
 import com.jake.bucketplace.snsapp.data.network.CardServiceApi
 import com.jake.bucketplace.snsapp.di.IOScheduler
 import com.jake.bucketplace.snsapp.domain.model.Card
+import com.jake.bucketplace.snsapp.domain.model.CardDetail
 import com.jake.bucketplace.snsapp.domain.repository.CardRepository
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -15,7 +16,8 @@ private val DEFUALT_PER = 10
 class CardRepositoryImpl @Inject constructor(
     private val cardServiceApi: CardServiceApi,
     @IOScheduler private val scheduler: Scheduler,
-    private val cardMapper: CardMapper
+    private val cardMapper: CardMapper,
+    private val cardDetailMapper: CardDetailMapper
 ) : CardRepository {
 
     var page = DEFUALT_PAGE_INDEX
@@ -47,6 +49,18 @@ class CardRepositoryImpl @Inject constructor(
 
     private fun pageCountUp(currentPage: Int) {
         page = currentPage + 1
+    }
+
+    override fun getCard(id: Long): Single<CardDetail> {
+        return cardServiceApi.getCard(id).subscribeOn(scheduler).flatMap { response ->
+            val cardDetailResponse = response.body()
+            if (response.isSuccessful && cardDetailResponse!= null && cardDetailResponse.status) {
+                val cardDetail = cardDetailMapper.transform(cardDetailResponse)
+                Single.just(cardDetail)
+            } else {
+                Single.error(Throwable("Failure to get card"))
+            }
+        }
     }
 
 }
