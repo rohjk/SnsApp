@@ -26,13 +26,25 @@ class CardDetailViewModel @Inject constructor(
     val cardDetail: LiveData<CardDetail>
         get() = _cardDetail
 
+    private val _isLoading = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     fun setCardId(id: Long) {
        loadCardDeatil(id)
     }
 
+    fun refresh() {
+        val id = _cardDetail.value?.card?.id ?: -1
+        loadCardDeatil(id)
+    }
+
     private fun loadCardDeatil(id: Long) {
+        _isLoading.value = true
         dispose.add(
-            cardRepository.getCard(id).observeOn(scheduler).subscribe({
+            cardRepository.getCard(id).observeOn(scheduler).doFinally {
+                _isLoading.value = false
+            }.subscribe({
                 _cardDetail.value = it
             },{
                 Log.d(TAG, "Failure to get Card Detail : ${it.message}")
