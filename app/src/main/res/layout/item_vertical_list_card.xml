@@ -17,11 +17,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{clickListener}"
+        android:layout_marginBottom="@dimen/margin_normal"
         style="@style/card_view_normal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/margin_normal">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/listItemCardImage"
@@ -36,11 +38,12 @@
                 android:id="@+id/listItemCardDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:layout_marginBottom="@dimen/margin_bottom"
+                android:paddingTop="@dimen/margin_normal"
+                android:paddingStart="@dimen/margin_normal"
                 android:text="@{card.description}"
                 style="@style/text_body"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/listItemCardImage"
                 tools:text="description"/>
 

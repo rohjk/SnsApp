@@ -11,14 +11,18 @@
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/photoFeedSwipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:onRefreshListener="@{() -> viewModel.refresh()}"
+        app:refreshing="@{viewModel.isLoading()}">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photoFeedListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_vertical_list_card"/>
+            tools:listitem="@layout/item_vertical_list_card" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
