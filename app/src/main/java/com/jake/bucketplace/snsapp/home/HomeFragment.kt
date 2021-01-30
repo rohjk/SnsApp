@@ -15,12 +15,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var swipeContainer: SwipeRefreshLayout
-    private val popularCardListAdapter: PopularCardListAdapter by lazy {
-        PopularCardListAdapter(emptyList())
-    }
-    private val popularUserListAdapter: PopularUserListAdapter by lazy {
-        PopularUserListAdapter(emptyList())
-    }
+    private lateinit var adapter: HomeListAdapter
+
     @Inject
     lateinit var viewModel: HomeViewModel
 
@@ -34,23 +30,21 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this.binding = FragmentHomeBinding.inflate(inflater, container, false)
+        adapter = HomeListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@HomeFragment
             viewModel = this@HomeFragment.viewModel
-            homePapularCardsListView.adapter = popularCardListAdapter
-            homePapularUsersListView.adapter = popularUserListAdapter
+            homeListView.adapter = adapter
             this@HomeFragment.swipeContainer = homeSwipeContainer
         }
+
         subscribeUI()
         return binding.root
     }
 
     private fun subscribeUI() {
-        viewModel.popularCards.observe(viewLifecycleOwner) {
-            popularCardListAdapter.update(it)
-        }
-        viewModel.popularUsers.observe(viewLifecycleOwner) {
-            popularUserListAdapter.update(it)
+        viewModel.home.observe(viewLifecycleOwner) {
+            adapter.sumbitHome(it)
         }
     }
 

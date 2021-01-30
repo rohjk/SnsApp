@@ -17,57 +17,12 @@
         app:onRefreshListener="@{() -> viewModel.refresh()}"
         app:refreshing="@{viewModel.isLoading()}">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/homePapularCardsTitle"
-                style="@style/text_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top"
-                android:text="@string/home_popular_cards_title"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/homePapularCardsListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/homePapularCardsTitle"
-                tools:listitem="@layout/item_list_card"/>
-
-            <View
-                android:id="@+id/divider"
-                style="@style/divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/margin_normal"
-                app:layout_constraintBottom_toBottomOf="@+id/homePapularCardsListView"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/homePapularUsersTitle"
-                style="@style/text_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_big"
-                android:text="@string/home_popular_users_title"
-                app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/homePapularUsersListView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/homePapularUsersTitle"/>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_list_popular"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

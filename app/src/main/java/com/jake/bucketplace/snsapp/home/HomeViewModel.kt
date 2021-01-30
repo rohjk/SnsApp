@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jake.bucketplace.snsapp.di.MainScheduler
 import com.jake.bucketplace.snsapp.domain.model.Card
+import com.jake.bucketplace.snsapp.domain.model.Home
 import com.jake.bucketplace.snsapp.domain.model.User
 import com.jake.bucketplace.snsapp.domain.repository.HomeRepository
 import io.reactivex.Scheduler
@@ -23,13 +24,9 @@ class HomeViewModel @Inject constructor(
 
     private val dispose = CompositeDisposable()
 
-    private val _popularCards = MutableLiveData<List<Card>>()
-    val popularCards: LiveData<List<Card>>
-        get() = _popularCards
-
-    private val _popularUsers = MutableLiveData<List<User>>()
-    val popularUsers: LiveData<List<User>>
-        get() = _popularUsers
+    private val _home = MutableLiveData<Home>()
+    val home: LiveData<Home>
+        get() = _home
 
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean>
@@ -48,9 +45,8 @@ class HomeViewModel @Inject constructor(
         dispose.add(
             homeRepository.getHome().observeOn(schedulers).doFinally {
                 _isLoading.value = false
-            }.subscribe({ home ->
-                _popularCards.value = home.popularCards
-                _popularUsers.value = home.papularUsers
+            }.subscribe({ item ->
+               _home.value = item
             }, { error ->
                 Log.e(TAG, "Failure to get Home : ${error.message}")
             })

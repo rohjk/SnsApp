@@ -1,4 +1,4 @@
-package com.jake.bucketplace.snsapp.home
+package com.jake.bucketplace.snsapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.databinding.ItemListUserBinding
 import com.jake.bucketplace.snsapp.domain.model.User
 
-class PopularUserListAdapter constructor(
+class UserListAdapter constructor(
     private var users: List<User>
-) : RecyclerView.Adapter<PopularUserListAdapter.CardViewHolder>() {
+) : RecyclerView.Adapter<UserListAdapter.CardViewHolder>() {
 
     class CardViewHolder constructor(private val binding: ItemListUserBinding) :
         RecyclerView.ViewHolder(binding.root) {

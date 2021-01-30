@@ -9,5 +9,8 @@
     <dimen name="margin_top">16dp</dimen>
     <dimen name="margin_bottom">26dp</dimen>
 
+    <dimen name="card_corner_normal">8dp</dimen>
+    <dimen name="card_elevation_normal">8dp</dimen>
+
     <dimen name="horizontal_item_size">70dp</dimen>
 </resources>
