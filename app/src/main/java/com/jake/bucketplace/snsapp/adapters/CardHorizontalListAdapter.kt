@@ -6,7 +6,6 @@ import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.NavHomeDirections
-import com.jake.bucketplace.snsapp.carddetail.CardDetailFragmentDirections
 import com.jake.bucketplace.snsapp.databinding.ItemHorizontalListCardBinding
 import com.jake.bucketplace.snsapp.domain.model.Card
 
