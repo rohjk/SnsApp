@@ -17,7 +17,8 @@ import javax.inject.Singleton
         NetworkModule::class,
         SchedulerModule::class,
         RxModule::class,
-        RepositoryBindModule::class,
+        RepositoryModule::class,
+        AuthModule::class,
         AppSubcomponents::class]
 )
 interface AppComponent {

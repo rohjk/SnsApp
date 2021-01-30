@@ -26,4 +26,34 @@ class UserRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override fun singUp(nickName: String, introduction: String, password: String): Single<Long> {
+        return userServiceApi.signUp(nickName, introduction, password).subscribeOn(scheduler).flatMap { response ->
+            val authResponse = response.body()
+            if (response.isSuccessful && authResponse != null ) {
+                if (!authResponse.status) {
+                    Single.error(Throwable(authResponse.errorMessage))
+                } else {
+                    Single.just(authResponse.userId)
+                }
+            } else {
+                Single.error(Throwable("Failure to Sign up(${response.code()})"))
+            }
+        }
+    }
+
+    override fun singIn(nickName: String, password: String): Single<Long> {
+        return userServiceApi.signIn(nickName, password).subscribeOn(scheduler).flatMap { response ->
+            val authResponse = response.body()
+            if (response.isSuccessful && authResponse != null ) {
+                if (!authResponse.status) {
+                    Single.error(Throwable(authResponse.errorMessage))
+                } else {
+                    Single.just(authResponse.userId)
+                }
+            } else {
+                Single.error(Throwable("Failure to Sign up(${response.code()})"))
+            }
+        }
+    }
 }

@@ -1,13 +1,12 @@
 package com.jake.bucketplace.snsapp.data.repository.user
 
 import com.google.gson.annotations.SerializedName
-import com.jake.bucketplace.snsapp.data.model.User
 
-data class UserResponse (
+data class AuthResponse (
     @SerializedName("ok")
     val status: Boolean,
-    @SerializedName("user")
-    val user: User,
+    @SerializedName("user_id")
+    val userId: Long,
     @SerializedName("error_msg")
     val errorMessage: String
 )

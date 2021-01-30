@@ -10,7 +10,7 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-abstract class RepositoryBindModule {
+abstract class RepositoryModule {
 
     @Binds
     abstract fun bindHomeRepository(impl: HomeRepositoryImpl): HomeRepository

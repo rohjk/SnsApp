@@ -10,5 +10,7 @@ data class HomeResponse (
     @SerializedName("popular_cards")
     val popularCards: List<Card>,
     @SerializedName("popular_users")
-    val popularUsers: List<User>
+    val popularUsers: List<User>,
+    @SerializedName("msg")
+    val errorMessage: String
 )

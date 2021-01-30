@@ -8,5 +8,7 @@ data class CardResponse (
     @SerializedName("ok")
     val status: Boolean,
     @SerializedName("cards")
-    val cards: List<Card>
+    val cards: List<Card>,
+    @SerializedName("error_msg")
+    val errorMessage: String
 )
