@@ -5,9 +5,26 @@
     android:id="@+id/nav_home"
     app:startDestination="@id/homeViewPagerFragment">
 
+    <action android:id="@+id/action_global_cardDetailFragment" app:destination="@id/cardDetailFragment"/>
+
     <fragment
         android:id="@+id/homeViewPagerFragment"
         android:name="com.jake.bucketplace.snsapp.viewpager.HomeViewPagerFragment"
-        android:label="fragment_home_view_pager"
         tools:layout="@layout/fragment_home_view_pager" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.jake.bucketplace.snsapp.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/photoFeedFragment"
+        android:name="com.jake.bucketplace.snsapp.photofeed.PhotoFeedFragment"
+        tools:layout="@layout/fragment_photo_feed" />
+    <fragment
+        android:id="@+id/cardDetailFragment"
+        android:name="com.jake.bucketplace.snsapp.carddetail.CardDetailFragment"
+        tools:layout="@layout/fragment_card_detail">
+        <argument
+            android:name="cardId"
+            app:argType="long" />
+    </fragment>
 </navigation>

@@ -2,8 +2,11 @@ package com.jake.bucketplace.snsapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.jake.bucketplace.snsapp.NavHomeDirections
+import com.jake.bucketplace.snsapp.carddetail.CardDetailFragmentDirections
 import com.jake.bucketplace.snsapp.databinding.ItemHorizontalListCardBinding
 import com.jake.bucketplace.snsapp.domain.model.Card
 
@@ -20,8 +23,13 @@ class CardHorizontalListAdapter constructor(
             }
         }
         init {
-            binding.setClickListener { view ->
-                Toast.makeText(view.context, "${binding.card?.id}", Toast.LENGTH_SHORT).show()
+            binding.apply {
+                setClickListener { view ->
+                    card?.apply {
+                        val direction: NavDirections = NavHomeDirections.actionGlobalCardDetailFragment(id)
+                        view.findNavController().navigate(direction)
+                    }
+                }
             }
         }
     }
