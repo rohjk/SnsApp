@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.jake.bucketplace.snsapp.databinding.ItemHorizontalListUserBinding
+import com.jake.bucketplace.snsapp.databinding.ItemHorizontalUserBinding
 import com.jake.bucketplace.snsapp.domain.model.User
 
 class UserHorizontalListAdapter constructor(
     private var users: List<User>
-) : RecyclerView.Adapter<UserHorizontalListAdapter.CardViewHolder>() {
+) : RecyclerView.Adapter<UserHorizontalListAdapter.UserViewHolder>() {
 
-    class CardViewHolder constructor(private val binding: ItemHorizontalListUserBinding) :
+    class UserViewHolder constructor(private val binding: ItemHorizontalUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: User) {
             binding.apply {
@@ -26,9 +26,9 @@ class UserHorizontalListAdapter constructor(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        return CardViewHolder(
-            ItemHorizontalListUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        return UserViewHolder(
+            ItemHorizontalUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -36,7 +36,7 @@ class UserHorizontalListAdapter constructor(
        return users.size
     }
 
-    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
        val user = users[position]
         holder.bind(user)
     }

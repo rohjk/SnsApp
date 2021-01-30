@@ -6,14 +6,14 @@ import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.NavHomeDirections
-import com.jake.bucketplace.snsapp.databinding.ItemHorizontalListCardBinding
+import com.jake.bucketplace.snsapp.databinding.ItemHorizontalCardBinding
 import com.jake.bucketplace.snsapp.domain.model.Card
 
 class CardHorizontalListAdapter constructor(
     private var cards: List<Card>
 ) : RecyclerView.Adapter<CardHorizontalListAdapter.CardViewHolder>() {
 
-    class CardViewHolder constructor(private val binding: ItemHorizontalListCardBinding) :
+    class CardViewHolder constructor(private val binding: ItemHorizontalCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Card) {
             binding.apply {
@@ -35,7 +35,7 @@ class CardHorizontalListAdapter constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         return CardViewHolder(
-            ItemHorizontalListCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemHorizontalCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 

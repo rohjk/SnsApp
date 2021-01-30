@@ -33,7 +33,7 @@ class CardDetailViewModel @Inject constructor(
     private fun loadCardDeatil(id: Long) {
         dispose.add(
             cardRepository.getCard(id).observeOn(scheduler).subscribe({
-                Log.d(TAG, "Success to get Card Detail")
+                _cardDetail.value = it
             },{
                 Log.d(TAG, "Failure to get Card Detail : ${it.message}")
             })

@@ -11,7 +11,7 @@
 
     <dimen name="card_corner_normal">8dp</dimen>
     <dimen name="card_elevation_normal">8dp</dimen>
-    <dimen name="card_image_height">135dp</dimen>
+    <dimen name="vertical_image_height">135dp</dimen>
 
     <dimen name="horizontal_item_size">70dp</dimen>
 </resources>
