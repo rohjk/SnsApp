@@ -6,6 +6,8 @@
     app:startDestination="@id/homeViewPagerFragment">
 
     <action android:id="@+id/action_global_cardDetailFragment" app:destination="@id/cardDetailFragment"/>
+    <action android:id="@+id/action_global_userDetailFragment" app:destination="@id/userDetailFragment" />
+    <action android:id="@+id/action_global_signUpFragment" app:destination="@id/signUpFragment"/>
 
     <fragment
         android:id="@+id/homeViewPagerFragment"
@@ -35,5 +37,10 @@
         <argument
             android:name="userId"
             app:argType="long" />
-    </fragment><action android:id="@+id/action_global_userDetailFragment" app:destination="@id/userDetailFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.jake.bucketplace.snsapp.signup.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>

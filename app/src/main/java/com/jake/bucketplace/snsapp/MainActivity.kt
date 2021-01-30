@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.jake.bucketplace.snsapp.databinding.ActivityMainBinding
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.apply {
             lifecycleOwner = this@MainActivity
+            activity = this@MainActivity
             this@MainActivity.toolbar = mainToolbar
         }
 
@@ -37,5 +39,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    fun signUp() {
+        this.navController.navigate(NavHomeDirections.actionGlobalSignUpFragment())
+    }
+
+    fun signIn() {
+
+    }
+
+    fun singOut() {
+
     }
 }
