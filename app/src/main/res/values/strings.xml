@@ -12,6 +12,12 @@
     <string name="card_detail_recomend_cards_title">추천카드 : 카드를 클릭해보세요.</string>
     <string name="user_detail_user_nickname">닉네임: %s</string>
     <string name="user_introduction">소개: %s</string>
+
+    <string name="nickname">닉네임</string>
+    <string name="introduction">소개</string>
+    <string name="password">비밀번호</string>
+    <string name="signup">가입</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
