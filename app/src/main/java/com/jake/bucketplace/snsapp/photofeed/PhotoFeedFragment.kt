@@ -43,13 +43,8 @@ class PhotoFeedFragment : Fragment() {
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val visibleItemCount = layoutManager.childCount
-                val totalItemCount = layoutManager.itemCount
-                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-
-                if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
+                if (isLastIndex(layoutManager)) {
                     viewModel?.loadMore()
                 }
             }
@@ -65,7 +60,13 @@ class PhotoFeedFragment : Fragment() {
         }
     }
 
+    private fun isLastIndex(layoutManager: LinearLayoutManager): Boolean {
+        val visibleItemCount = layoutManager.childCount
+        val totalItemCount = layoutManager.itemCount
+        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
+        return visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0
+    }
 
     override fun onDestroy() {
         binding.unbind()
