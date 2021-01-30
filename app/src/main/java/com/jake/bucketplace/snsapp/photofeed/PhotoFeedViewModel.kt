@@ -39,6 +39,13 @@ class PhotoFeedViewModel @Inject constructor(
         super.onCleared()
     }
 
+    fun loadMore() {
+        val loading = _isLoading.value ?: false
+        if(!loading) {
+            loadCard(false)
+        }
+    }
+
     fun refresh() {
         loadCard(true)
     }

@@ -28,17 +28,14 @@ class CardRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun getCards(
-        page: Int = DEFUALT_PAGE_INDEX,
-        per: Int = DEFUALT_PER
-    ): Single<List<Card>> {
+    private fun getCards(page: Int = DEFUALT_PAGE_INDEX, per: Int = DEFUALT_PER): Single<List<Card>> {
         return cardServiceApi.getCards(page, per).subscribeOn(scheduler).flatMap { response ->
             val cardResponse = response.body()
-            if(response.isSuccessful && cardResponse != null && cardResponse.status) {
-                if(cardResponse.cards.isEmpty()) {
+            if (response.isSuccessful && cardResponse != null && cardResponse.status) {
+                if (cardResponse.cards.isEmpty()) {
                     Single.error(Throwable("Empty card list"))
                 } else {
-                    pageCountUp()
+                    pageCountUp(page)
                     val cards = cardResponse.cards.map { cardMapper.transform(it) }
                     Single.just(cards)
                 }
@@ -48,8 +45,8 @@ class CardRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun pageCountUp() {
-        page += 1
+    private fun pageCountUp(currentPage: Int) {
+        page = currentPage + 1
     }
 
 }

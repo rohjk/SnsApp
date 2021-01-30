@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.jake.bucketplace.snsapp.R
 import com.jake.bucketplace.snsapp.SnsApplication
 import com.jake.bucketplace.snsapp.adapters.CardVerticalListAdapter
 import com.jake.bucketplace.snsapp.databinding.FragmentPhotoFeedBinding
@@ -41,6 +40,21 @@ class PhotoFeedFragment : Fragment() {
             this@PhotoFeedFragment.recyclerView = photoFeedListView
         }
 
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
+                    viewModel?.loadMore()
+                }
+            }
+        })
+
         subscribeUI()
         return binding.root
     }
@@ -50,6 +64,8 @@ class PhotoFeedFragment : Fragment() {
             adapter.update(items)
         }
     }
+
+
 
     override fun onDestroy() {
         binding.unbind()
