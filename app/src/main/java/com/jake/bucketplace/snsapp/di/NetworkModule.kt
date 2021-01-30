@@ -1,6 +1,7 @@
 package com.jake.bucketplace.snsapp.di
 
 import android.content.Context
+import com.jake.bucketplace.snsapp.data.network.CardServiceApi
 import com.jake.bucketplace.snsapp.data.network.HomeServiceApi
 import dagger.Module
 import dagger.Provides
@@ -32,6 +33,11 @@ class NetworkModule {
     @Provides
     fun provideHomeServiceApi(retrofit: Retrofit): HomeServiceApi {
         return retrofit.create(HomeServiceApi::class.java)
+    }
+
+    @Provides
+    fun provideCardServiceApi(retrofit: Retrofit): CardServiceApi {
+        return retrofit.create(CardServiceApi::class.java)
     }
 
 }

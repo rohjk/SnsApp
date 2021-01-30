@@ -13,20 +13,22 @@ import javax.inject.Inject
 class PhotoFeedFragment : Fragment() {
 
     private lateinit var binding: FragmentPhotoFeedBinding
+
     @Inject
     lateinit var viewModel: PhotoFeedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity?.application as SnsApplication).appComponent.photoFeedComponent().create().inject(this)
+        (activity?.application as SnsApplication).appComponent.photoFeedComponent().create()
+            .inject(this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       this.binding = FragmentPhotoFeedBinding.inflate(inflater, container, false)
-       return binding.root
+        this.binding = FragmentPhotoFeedBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 }

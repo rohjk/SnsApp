@@ -1,4 +1,4 @@
-package com.jake.bucketplace.snsapp.data.repository
+package com.jake.bucketplace.snsapp.data.repository.home
 
 import com.jake.bucketplace.snsapp.data.model.mapper.CardMapper
 import com.jake.bucketplace.snsapp.data.model.mapper.UserMapper

@@ -1,4 +1,4 @@
-package com.jake.bucketplace.snsapp.data.repository
+package com.jake.bucketplace.snsapp.data.repository.home
 
 import com.google.gson.annotations.SerializedName
 import com.jake.bucketplace.snsapp.data.model.Card
