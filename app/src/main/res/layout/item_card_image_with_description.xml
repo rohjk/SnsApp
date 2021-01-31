@@ -21,8 +21,8 @@
             <ImageView
                 android:id="@+id/itemCardDetailImage"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/vertical_image_height"
-                android:scaleType="centerCrop"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 app:imageFromUrl="@{card.imageUrl}"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@mipmap/ic_launcher"/>

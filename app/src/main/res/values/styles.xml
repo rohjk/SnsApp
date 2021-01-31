@@ -20,6 +20,7 @@
         <item name="android:layout_marginStart">@dimen/margin_side</item>
         <item name="android:layout_marginEnd">@dimen/margin_side</item>
         <item name="android:layout_marginTop">@dimen/margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/margin_small</item>
     </style>
 
 </resources>
