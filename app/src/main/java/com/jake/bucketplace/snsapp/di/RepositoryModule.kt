@@ -8,6 +8,7 @@ import com.jake.bucketplace.snsapp.domain.repository.HomeRepository
 import com.jake.bucketplace.snsapp.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
+import javax.inject.Singleton
 
 @Module
 abstract class RepositoryModule {

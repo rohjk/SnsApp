@@ -1,7 +1,9 @@
 package com.jake.bucketplace.snsapp.signup
 
+import com.jake.bucketplace.snsapp.di.FragmentScope
 import dagger.Subcomponent
 
+@FragmentScope
 @Subcomponent
 interface SignUpComponent {
     @Subcomponent.Factory

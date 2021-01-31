@@ -31,16 +31,19 @@ class NetworkModule {
             .build()
     }
 
+    @Singleton
     @Provides
     fun provideHomeServiceApi(retrofit: Retrofit): HomeServiceApi {
         return retrofit.create(HomeServiceApi::class.java)
     }
 
+    @Singleton
     @Provides
     fun provideCardServiceApi(retrofit: Retrofit): CardServiceApi {
         return retrofit.create(CardServiceApi::class.java)
     }
 
+    @Singleton
     @Provides
     fun provideUserServiceApi(retrofit: Retrofit): UserServiceApi {
         return retrofit.create(UserServiceApi::class.java)

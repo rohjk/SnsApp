@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jake.bucketplace.snsapp.BaseViewModel
+import com.jake.bucketplace.snsapp.di.FragmentScope
 import com.jake.bucketplace.snsapp.di.MainScheduler
 import com.jake.bucketplace.snsapp.domain.model.Card
 import com.jake.bucketplace.snsapp.domain.repository.CardRepository
@@ -12,6 +13,7 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
+@FragmentScope
 class PhotoFeedViewModel @Inject constructor(
     private val cardRepository: CardRepository,
     @MainScheduler private val scheduler: Scheduler,
