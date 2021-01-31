@@ -8,6 +8,6 @@ data class UserResponse (
     val status: Boolean,
     @SerializedName("user")
     val user: User,
-    @SerializedName("error_msg")
+    @SerializedName("msg")
     val errorMessage: String
 )

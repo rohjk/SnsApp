@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.observe
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.jake.bucketplace.snsapp.SnsApplication
@@ -43,8 +44,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun subscribeUI() {
-        viewModel.home.observe(viewLifecycleOwner) {
-            adapter.sumbitHome(it)
+        viewModel.apply {
+            home.observe(viewLifecycleOwner) {
+                adapter.sumbitHome(it)
+            }
+            onError.observe(viewLifecycleOwner) { errorMessage ->
+                Toast.makeText(context,errorMessage, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

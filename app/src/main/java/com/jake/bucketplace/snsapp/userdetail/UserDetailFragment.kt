@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
 import com.jake.bucketplace.snsapp.SnsApplication
@@ -42,8 +43,13 @@ class UserDetailFragment : Fragment() {
     }
 
     private fun subscribeUI() {
-        viewmodel.user.observe(viewLifecycleOwner) {
-            adapter.sumbitUser(it)
+        viewmodel.apply {
+            user.observe(viewLifecycleOwner) { user ->
+                adapter.sumbitUser(user)
+            }
+            onError.observe(viewLifecycleOwner) { errorMessage ->
+                Toast.makeText(context,errorMessage, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

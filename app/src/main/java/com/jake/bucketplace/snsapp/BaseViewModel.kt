@@ -10,5 +10,9 @@ abstract class BaseViewModel: ViewModel() {
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
+    protected val _onError = MutableLiveData<String>()
+    val onError: LiveData<String>
+        get() = _onError
+
     abstract fun refresh()
 }

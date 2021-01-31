@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -49,9 +50,14 @@ class SignUpFragment : Fragment() {
     }
 
     fun subscribe() {
-        viewModel.isSignIn.observe(viewLifecycleOwner) { isSignUp ->
-            if(isSignUp) {
-                this.findNavController().navigateUp()
+        viewModel.apply {
+            isSignIn.observe(viewLifecycleOwner) { isSignUp ->
+                if(isSignUp) {
+                    this@SignUpFragment.findNavController().navigateUp()
+                }
+            }
+            onError.observe(viewLifecycleOwner) { errorMessage ->
+                Toast.makeText(context,errorMessage, Toast.LENGTH_SHORT).show()
             }
         }
     }

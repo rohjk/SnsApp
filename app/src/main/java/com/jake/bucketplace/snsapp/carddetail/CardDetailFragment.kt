@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
 import com.jake.bucketplace.snsapp.SnsApplication
@@ -45,8 +46,13 @@ class CardDetailFragment : Fragment() {
     }
 
     private fun subscribeUI() {
-        viewModel.cardDetail.observe(viewLifecycleOwner) {
-            adapter.sumbitCardDetail(it)
+        viewModel.apply {
+            cardDetail.observe(viewLifecycleOwner) { cardDetail ->
+                adapter.sumbitCardDetail(cardDetail)
+            }
+            onError.observe(viewLifecycleOwner) { errorMessage ->
+                Toast.makeText(context,errorMessage, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

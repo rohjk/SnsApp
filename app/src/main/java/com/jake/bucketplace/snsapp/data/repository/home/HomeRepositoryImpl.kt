@@ -18,11 +18,15 @@ class HomeRepositoryImpl @Inject constructor(
     override fun getHome(): Single<Home> {
         return homeServiceApi.getHome().subscribeOn(schedulers).flatMap { response ->
             val homeResponse = response.body()
-            if ( response.isSuccessful &&  homeResponse != null && homeResponse.status) {
-                val home = homeMapper.transform(homeResponse)
-                Single.just(home)
+            if ( response.isSuccessful &&  homeResponse != null) {
+                if (homeResponse.status) {
+                    val home = homeMapper.transform(homeResponse)
+                    Single.just(home)
+                } else {
+                    Single.error(Throwable(homeResponse.errorMessage))
+                }
             } else {
-                Single.error(Throwable("Failure to get Home"))
+                Single.error(Throwable("FAILURE_TO_GET_HOME_${response.code()}"))
             }
         }
     }

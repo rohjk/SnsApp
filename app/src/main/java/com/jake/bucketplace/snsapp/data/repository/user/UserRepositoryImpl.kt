@@ -18,11 +18,15 @@ class UserRepositoryImpl @Inject constructor(
     override fun getUser(id: Long): Single<User> {
         return userServiceApi.getUser(id).subscribeOn(scheduler).flatMap { response ->
             val userResponse = response.body()
-            if (response.isSuccessful && userResponse!= null && userResponse.status) {
-                val user = userMapper.transform(userResponse.user)
-                Single.just(user)
+            if (response.isSuccessful && userResponse!= null) {
+                if (userResponse.status) {
+                    val user = userMapper.transform(userResponse.user)
+                    Single.just(user)
+                } else {
+                    Single.error(Throwable(userResponse.errorMessage))
+                }
             } else {
-                Single.error(Throwable("Failure to get User"))
+                Single.error(Throwable("FAILURE_TO_GET_USER_${response.code()}"))
             }
         }
     }
@@ -31,13 +35,14 @@ class UserRepositoryImpl @Inject constructor(
         return userServiceApi.signUp(nickName, introduction, password).subscribeOn(scheduler).flatMap { response ->
             val authResponse = response.body()
             if (response.isSuccessful && authResponse != null ) {
-                if (!authResponse.status) {
-                    Single.error(Throwable(authResponse.errorMessage))
-                } else {
+                if (authResponse.status) {
                     Single.just(authResponse.userId)
+
+                } else {
+                    Single.error(Throwable(authResponse.errorMessage))
                 }
             } else {
-                Single.error(Throwable("Failure to Sign up(${response.code()})"))
+                Single.error(Throwable("FAILURE_TO_SING_UP_${response.code()}"))
             }
         }
     }
@@ -46,13 +51,13 @@ class UserRepositoryImpl @Inject constructor(
         return userServiceApi.signIn(nickName, password).subscribeOn(scheduler).flatMap { response ->
             val authResponse = response.body()
             if (response.isSuccessful && authResponse != null ) {
-                if (!authResponse.status) {
-                    Single.error(Throwable(authResponse.errorMessage))
-                } else {
+                if (authResponse.status) {
                     Single.just(authResponse.userId)
+                } else {
+                    Single.error(Throwable(authResponse.errorMessage))
                 }
             } else {
-                Single.error(Throwable("Failure to Sign up(${response.code()})"))
+                Single.error(Throwable("FAILURE_TO_SIGN_IN_${response.code()}"))
             }
         }
     }

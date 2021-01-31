@@ -13,6 +13,6 @@ data class CardDeatilResponse (
     val user: User,
     @SerializedName("recommend_cards")
     val recommendCards: List<Card>,
-    @SerializedName("error_msg")
+    @SerializedName("msg")
     val errorMessage: String
 )

@@ -47,6 +47,7 @@ class HomeViewModel @Inject constructor(
                _home.value = item
             }, { error ->
                 Log.e(TAG, "Failure to get Home : ${error.message}")
+                _onError.value = error.message
             })
         )
     }

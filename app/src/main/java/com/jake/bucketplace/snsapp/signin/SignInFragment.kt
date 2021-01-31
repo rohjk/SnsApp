@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.jake.bucketplace.snsapp.R
@@ -42,9 +43,14 @@ class SignInFragment : Fragment() {
     }
 
     fun subscribe() {
-        viewModel.isSignIn.observe(viewLifecycleOwner) { isSignUp ->
-            if(isSignUp) {
-                this.findNavController().navigateUp()
+        viewModel.apply {
+            isSignIn.observe(viewLifecycleOwner) { isSignUp ->
+                if(isSignUp) {
+                    this@SignInFragment.findNavController().navigateUp()
+                }
+            }
+            onError.observe(viewLifecycleOwner) { errorMessage ->
+                Toast.makeText(context,errorMessage, Toast.LENGTH_SHORT).show()
             }
         }
     }

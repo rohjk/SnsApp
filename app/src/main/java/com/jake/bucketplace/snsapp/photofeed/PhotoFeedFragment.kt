@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,8 +55,13 @@ class PhotoFeedFragment : Fragment() {
     }
 
     private fun subscribeUI() {
-        viewModel.cards.observe(viewLifecycleOwner) { items ->
-            adapterCard.update(items)
+        viewModel.apply {
+            cards.observe(viewLifecycleOwner) { items ->
+                adapterCard.update(items)
+            }
+            onError.observe(viewLifecycleOwner) { errorMessage ->
+                Toast.makeText(context,errorMessage, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

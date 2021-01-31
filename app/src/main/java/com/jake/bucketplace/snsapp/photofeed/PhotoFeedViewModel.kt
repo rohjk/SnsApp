@@ -59,8 +59,9 @@ class PhotoFeedViewModel @Inject constructor(
                 }
                 items.addAll(cards)
                 _cards.value = items
-            }, {
-                Log.e(TAG, "Failure to get cards ${it.message}")
+            }, { error ->
+                Log.e(TAG, "Failure to get cards ${error.message}")
+                _onError.value = error.message
             })
         )
     }

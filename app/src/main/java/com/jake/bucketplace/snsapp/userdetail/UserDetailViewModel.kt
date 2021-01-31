@@ -46,8 +46,9 @@ class UserDetailViewModel @Inject constructor(
                 _isLoading.value = false
             }.subscribe({
                 _user.value = it
-            }, {
-                Log.e(TAG, "failure to get user : ${it.message}")
+            }, { error ->
+                Log.e(TAG, "failure to get user : ${error.message}")
+                _onError.value = error.message
             })
         )
     }

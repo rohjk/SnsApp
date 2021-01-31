@@ -47,7 +47,8 @@ class CardDetailViewModel @Inject constructor(
             }.subscribe({
                 _cardDetail.value = it
             }, {
-                Log.d(TAG, "Failure to get Card Detail : ${it.message}")
+                Log.e(TAG, "Failure to get Card Detail : ${it.message}")
+                _onError.value = it.message
             })
         )
     }

@@ -30,19 +30,22 @@ class CardRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun getCards(page: Int = DEFUALT_PAGE_INDEX, per: Int = DEFUALT_PER): Single<List<Card>> {
+    private fun getCards(
+        page: Int = DEFUALT_PAGE_INDEX,
+        per: Int = DEFUALT_PER
+    ): Single<List<Card>> {
         return cardServiceApi.getCards(page, per).subscribeOn(scheduler).flatMap { response ->
             val cardResponse = response.body()
             if (response.isSuccessful && cardResponse != null && cardResponse.status) {
                 if (cardResponse.cards.isEmpty()) {
-                    Single.error(Throwable("Empty card list"))
+                    Single.error(Throwable("EMPTY_CARD_LIST"))
                 } else {
                     pageCountUp(page)
                     val cards = cardResponse.cards.map { cardMapper.transform(it) }
                     Single.just(cards)
                 }
             } else {
-                Single.error(Throwable("Failure to get cards"))
+                Single.error(Throwable("FAILURE_TO_GET_CARDS_${response.code()}"))
             }
         }
     }
@@ -54,11 +57,15 @@ class CardRepositoryImpl @Inject constructor(
     override fun getCard(id: Long): Single<CardDetail> {
         return cardServiceApi.getCard(id).subscribeOn(scheduler).flatMap { response ->
             val cardDetailResponse = response.body()
-            if (response.isSuccessful && cardDetailResponse!= null && cardDetailResponse.status) {
-                val cardDetail = cardDetailMapper.transform(cardDetailResponse)
-                Single.just(cardDetail)
+            if (response.isSuccessful && cardDetailResponse != null) {
+                if (cardDetailResponse.status) {
+                    val cardDetail = cardDetailMapper.transform(cardDetailResponse)
+                    Single.just(cardDetail)
+                } else {
+                    Single.error(Throwable(cardDetailResponse.errorMessage))
+                }
             } else {
-                Single.error(Throwable("Failure to get card"))
+                Single.error(Throwable("FAILURE_TO_GET_CARD_${response.code()}"))
             }
         }
     }
