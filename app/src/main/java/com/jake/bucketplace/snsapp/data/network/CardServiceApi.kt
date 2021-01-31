@@ -1,6 +1,6 @@
 package com.jake.bucketplace.snsapp.data.network
 
-import com.jake.bucketplace.snsapp.data.repository.card.CardDeatilResponse
+import com.jake.bucketplace.snsapp.data.repository.card.CardDetailResponse
 import com.jake.bucketplace.snsapp.data.repository.card.CardResponse
 import io.reactivex.Single
 import retrofit2.Response
@@ -14,5 +14,5 @@ interface CardServiceApi {
     fun getCards(@Query("page") page: Int, @Query("per") per: Int): Single<Response<CardResponse>>
 
     @GET("cards/{cardId}")
-    fun getCard(@Path("cardId") cardId: Long): Single<Response<CardDeatilResponse>>
+    fun getCard(@Path("cardId") cardId: Long): Single<Response<CardDetailResponse>>
 }

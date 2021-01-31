@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.jake.bucketplace.snsapp.data.model.Card
 import com.jake.bucketplace.snsapp.data.model.User
 
-data class CardDeatilResponse (
+data class CardDetailResponse (
     @SerializedName("ok")
     val status: Boolean,
     @SerializedName("card")

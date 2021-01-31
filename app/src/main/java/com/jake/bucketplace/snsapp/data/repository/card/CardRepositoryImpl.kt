@@ -10,8 +10,6 @@ import io.reactivex.Scheduler
 import io.reactivex.Single
 import javax.inject.Inject
 
-private val DEFUALT_PAGE_INDEX = 1
-private val DEFUALT_PER = 10
 
 class CardRepositoryImpl @Inject constructor(
     private val cardServiceApi: CardServiceApi,
@@ -20,7 +18,12 @@ class CardRepositoryImpl @Inject constructor(
     private val cardDetailMapper: CardDetailMapper
 ) : CardRepository {
 
-    var page = DEFUALT_PAGE_INDEX
+    companion object {
+        const val DEFAUALT_PAGE_INDEX = 1
+        const val DEFAUALT_PER = 10
+    }
+
+    var page = DEFAUALT_PAGE_INDEX
 
     override fun getCards(foreUpdate: Boolean): Single<List<Card>> {
         if (foreUpdate) {
@@ -31,8 +34,8 @@ class CardRepositoryImpl @Inject constructor(
     }
 
     private fun getCards(
-        page: Int = DEFUALT_PAGE_INDEX,
-        per: Int = DEFUALT_PER
+        page: Int = DEFAUALT_PAGE_INDEX,
+        per: Int = DEFAUALT_PER
     ): Single<List<Card>> {
         return cardServiceApi.getCards(page, per).subscribeOn(scheduler).flatMap { response ->
             val cardResponse = response.body()

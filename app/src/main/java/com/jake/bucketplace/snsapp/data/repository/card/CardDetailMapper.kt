@@ -9,7 +9,7 @@ class CardDetailMapper @Inject constructor(
     private val cardMapper: CardMapper,
     private val userMapper: UserMapper
 ) {
-    fun transform(cardDetailResponse: CardDeatilResponse): CardDetail =
+    fun transform(cardDetailResponse: CardDetailResponse): CardDetail =
         with(cardDetailResponse) {
             return CardDetail(
                 card = cardMapper.transform(cardDetailResponse.card),

@@ -70,7 +70,7 @@ class CardDetailMapperTest {
 
     @Test
     fun testTransform_success() {
-        val inputCardDeatilResponse = CardDeatilResponse(
+        val inputCardDeatilResponse = CardDetailResponse(
             true,
             inputCard,
             inputUser,
@@ -103,7 +103,7 @@ class CardDetailMapperTest {
 
     @Test
     fun testTransform_empty_recommend_cards_success() {
-        val inputCardDeatilResponse = CardDeatilResponse(
+        val inputCardDeatilResponse = CardDetailResponse(
             true,
             inputCard,
             inputUser,
