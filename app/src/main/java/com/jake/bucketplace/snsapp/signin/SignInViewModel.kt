@@ -19,7 +19,9 @@ class SignInViewModel @Inject constructor(
         private const val TAG = "SignUpViewModel"
     }
 
-    val isSignIn: LiveData<Boolean> = authManager.isSignIn
+    val isSignIn: LiveData<Boolean> by lazy {
+        authManager.isSignIn
+    }
 
 
     fun signIn(nickName: String, password: String) {
@@ -29,7 +31,7 @@ class SignInViewModel @Inject constructor(
         }
     }
 
-    fun requestSingin(nickName: String, password: String) {
+    private fun requestSingin(nickName: String, password: String) {
         _isLoading.value = true
         disposable.add(
             authManager.signIn(nickName, password).doFinally {
