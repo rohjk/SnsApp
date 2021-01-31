@@ -9,7 +9,9 @@ class MainViewModel @Inject constructor(
     private val authManager: AuthManager
 ): ViewModel() {
 
-    val isSignIn: LiveData<Boolean> = authManager.isSignIn
+    val isSignIn: LiveData<Boolean> by lazy {
+        authManager.isSignIn
+    }
 
     fun signOut() {
         authManager.signOut()
