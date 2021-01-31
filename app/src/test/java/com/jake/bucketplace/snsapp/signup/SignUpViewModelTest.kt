@@ -1,14 +1,14 @@
-package com.jake.bucketplace.snsapp.signin
+package com.jake.bucketplace.snsapp.signup
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import com.jake.bucketplace.snsapp.auth.AuthManager
+import com.jake.bucketplace.snsapp.signin.SignInViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify
 import io.reactivex.Completable
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import org.junit.Before
 
@@ -16,11 +16,11 @@ import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 
-class SignInViewModelTest {
+class SignUpViewModelTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    lateinit var signInViewModel: SignInViewModel
+    lateinit var signUpViewModel: SignUpViewModel
 
     @MockK
     lateinit var authManager: AuthManager
@@ -31,30 +31,31 @@ class SignInViewModelTest {
     private val disposable = CompositeDisposable()
 
     private val nickName = "NICK"
+    private val introduction = "INTRO"
     private val password = "PWD"
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        signInViewModel = SignInViewModel(authManager, disposable)
+        signUpViewModel = SignUpViewModel(authManager, disposable)
         every { authManager.isSignIn } returns isSignIn
     }
 
     @Test
-    fun testSignIn_success() {
+    fun testSignUp_success() {
         val expectedIsSignIn = true
         val expectedIsLoading = false
 
-        every { authManager.signIn(nickName, password) } returns Completable.complete()
+        every { authManager.signUp(nickName, introduction, password) } returns Completable.complete()
         every { isSignIn.value } returns true
 
-        signInViewModel.signIn(nickName, password)
+        signUpViewModel.signUp(nickName, introduction,password)
 
-        val actualIsSignIn = signInViewModel.isSignIn.value
-        val actualIsLoading = signInViewModel.isLoading.value
+        val actualIsSignIn = signUpViewModel.isSignIn.value
+        val actualIsLoading = signUpViewModel.isLoading.value
 
         verify {
-            authManager.signIn(nickName, password)
+            authManager.signUp(nickName, introduction, password)
         }
 
         assertEquals(expectedIsSignIn, actualIsSignIn)
@@ -62,25 +63,24 @@ class SignInViewModelTest {
     }
 
     @Test
-    fun testSignIn_failure() {
-        val errorMessage = "FAILURE_TO_SIGN_IN"
+    fun testSignUp_failure() {
+        val errorMessage = "FAILURE_TO_SIGN_UP"
         val expectedOnError = errorMessage
         val expectedIsSignIn = false
         val expectedIsLoading = false
 
-        every { authManager.signIn(nickName, password) } returns Completable.error(Throwable(errorMessage))
+        every { authManager.signUp(nickName, introduction, password) } returns Completable.error(Throwable(errorMessage))
         every { isSignIn.value } returns false
 
-        signInViewModel.signIn(nickName, password)
+        signUpViewModel.signUp(nickName, introduction, password)
 
-        val actualOnError = signInViewModel.onError.value
-        val actualIsSignIn = signInViewModel.isSignIn.value
-        val actualIsLoading = signInViewModel.isLoading.value
+        val actualOnError = signUpViewModel.onError.value
+        val actualIsSignIn = signUpViewModel.isSignIn.value
+        val actualIsLoading = signUpViewModel.isLoading.value
 
         verify {
-            authManager.signIn(nickName, password)
+            authManager.signUp(nickName, introduction, password)
         }
-
         assertEquals(expectedOnError, actualOnError)
         assertEquals(expectedIsSignIn, actualIsSignIn)
         assertEquals(expectedIsLoading, actualIsLoading)
