@@ -41,8 +41,10 @@ class HomeFragment : Fragment() {
         }
 
         subscribeUI()
+        viewModel.loadHome()
         return binding.root
     }
+
 
     private fun subscribeUI() {
         viewModel.apply {

@@ -27,10 +27,6 @@ class HomeViewModel @Inject constructor(
     val home: LiveData<Home>
         get() = _home
 
-    init {
-        loadHome()
-    }
-
     override fun refresh() {
         loadHome()
     }
@@ -40,7 +36,7 @@ class HomeViewModel @Inject constructor(
         super.onCleared()
     }
 
-    private fun loadHome() {
+    fun loadHome() {
         _isLoading.value = true
         disposable.add(
             homeRepository.getHome().observeOn(schedulers).doFinally {
