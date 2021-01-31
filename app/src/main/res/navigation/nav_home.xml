@@ -7,8 +7,8 @@
 
     <action android:id="@+id/action_global_cardDetailFragment" app:destination="@id/cardDetailFragment"/>
     <action android:id="@+id/action_global_userDetailFragment" app:destination="@id/userDetailFragment" />
-    <action android:id="@+id/action_global_signUpFragment" app:destination="@id/signUpFragment"/>
-    <action android:id="@+id/action_global_signInFragment" app:destination="@id/signInFragment"/>
+    <action android:id="@+id/action_global_signUpFragment" app:destination="@id/signUpFragment" app:launchSingleTop="true"/>
+    <action android:id="@+id/action_global_signInFragment" app:destination="@id/signInFragment" app:launchSingleTop="true"/>
 
     <fragment
         android:id="@+id/homeViewPagerFragment"

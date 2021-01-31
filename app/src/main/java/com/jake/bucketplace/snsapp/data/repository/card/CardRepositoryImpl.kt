@@ -36,13 +36,13 @@ class CardRepositoryImpl @Inject constructor(
     ): Single<List<Card>> {
         return cardServiceApi.getCards(page, per).subscribeOn(scheduler).flatMap { response ->
             val cardResponse = response.body()
-            if (response.isSuccessful && cardResponse != null && cardResponse.status) {
-                if (cardResponse.cards.isEmpty()) {
-                    Single.error(Throwable("EMPTY_CARD_LIST"))
-                } else {
+            if (response.isSuccessful && cardResponse != null) {
+                if (cardResponse.status) {
                     pageCountUp(page)
                     val cards = cardResponse.cards.map { cardMapper.transform(it) }
                     Single.just(cards)
+                } else {
+                    Single.error(Throwable(cardResponse.errorMessage))
                 }
             } else {
                 Single.error(Throwable("FAILURE_TO_GET_CARDS_${response.code()}"))
