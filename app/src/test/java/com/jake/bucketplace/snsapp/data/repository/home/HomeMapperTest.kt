@@ -43,7 +43,7 @@ class HomeMapperTest {
     }
 
     @Test
-    fun transform() {
+    fun testTransform() {
         val homeResponse = HomeResponse(
             true,
             listOf(dataCard),

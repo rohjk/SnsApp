@@ -53,7 +53,7 @@ class CardRepositoryImplTest {
     }
 
     @Test
-    fun getCards_success() {
+    fun testGetCards_success() {
         val inputPage = 2
         cardRepository.page = inputPage
 
@@ -86,7 +86,7 @@ class CardRepositoryImplTest {
     }
 
     @Test
-    fun getCards_forceUpdate_success() {
+    fun testGetCards_forceUpdate_success() {
         val inputPage = 10
         cardRepository.page = inputPage
 
@@ -122,7 +122,7 @@ class CardRepositoryImplTest {
     }
 
     @Test
-    fun getCards_failure_status_false() {
+    fun testGetCards_failure_status_false() {
         val inputPage = 3
         cardRepository.page = inputPage
 
@@ -147,7 +147,7 @@ class CardRepositoryImplTest {
     }
 
     @Test
-    fun getCards_failure_response_error() {
+    fun testGetCards_failure_response_error() {
         val inputPage = 3
         cardRepository.page = inputPage
 

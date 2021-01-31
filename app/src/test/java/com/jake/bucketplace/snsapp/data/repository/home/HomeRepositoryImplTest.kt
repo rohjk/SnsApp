@@ -45,7 +45,7 @@ class HomeRepositoryImplTest {
     }
 
     @Test
-    fun getHome_success() {
+    fun testGetHome_success() {
         val homeResponse = HomeResponse (
             true,
             listOf(dataCard),
@@ -73,7 +73,7 @@ class HomeRepositoryImplTest {
     }
 
     @Test
-    fun getHome_failire_status_false() {
+    fun testGetHome_failire_status_false() {
         val errorMessage = "FAILURE_TO_GET_HOME"
         val homeResponse = HomeResponse (
             false,
@@ -94,7 +94,7 @@ class HomeRepositoryImplTest {
     }
 
     @Test
-    fun getHome_failire_response_error() {
+    fun testGetHome_failire_response_error() {
         val response = Response.error<HomeResponse>(
             400,
             ResponseBody.create(
