@@ -17,7 +17,7 @@ class CardMapperTest {
 
     @Before
     fun setUp() {
-        MockKAnnotations.init(this)
+
     }
 
     @Test
