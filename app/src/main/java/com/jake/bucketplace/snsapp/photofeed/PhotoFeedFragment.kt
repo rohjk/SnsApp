@@ -46,7 +46,7 @@ class PhotoFeedFragment : Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 if (isLastIndex(layoutManager)) {
-                    viewModel?.loadMore()
+                    viewModel.loadMore()
                 }
             }
         })

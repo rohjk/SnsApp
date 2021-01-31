@@ -66,7 +66,7 @@ class SignInFragment : Fragment() {
             val nickName = signInNickName.text.toString()
             val password = signInPassword.text.toString()
             viewModel?.signIn(nickName, password)
-            manager?.hideSoftInputFromWindow(root.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+            manager.hideSoftInputFromWindow(root.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         }
     }
 

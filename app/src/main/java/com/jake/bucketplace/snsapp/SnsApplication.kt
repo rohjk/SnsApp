@@ -10,7 +10,7 @@ class SnsApplication: Application() {
         initializeComponent()
     }
 
-    open fun initializeComponent(): AppComponent {
+    private fun initializeComponent(): AppComponent {
         return DaggerAppComponent.factory().create(applicationContext)
     }
 }

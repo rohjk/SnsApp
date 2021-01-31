@@ -69,7 +69,7 @@ class SignUpFragment : Fragment() {
             val introduction = signupIntroduction.text.toString()
             val password = signupPassword.text.toString()
             viewModel?.signUp(nickName, introduction, password)
-            manager?.hideSoftInputFromWindow(root.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+            manager.hideSoftInputFromWindow(root.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         }
 
     }
