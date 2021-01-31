@@ -1,13 +1,9 @@
 package com.jake.bucketplace.snsapp.auth
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.jake.bucketplace.snsapp.di.MainScheduler
-import com.jake.bucketplace.snsapp.domain.model.User
 import com.jake.bucketplace.snsapp.domain.repository.UserRepository
 import io.reactivex.Completable
 import io.reactivex.Scheduler
-import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,7 +15,7 @@ class AuthManagerImpl @Inject constructor(
 ): AuthManager() {
 
     override fun signUp(nickName: String, introduction: String, password: String): Completable {
-        return userRepository.singUp(nickName, introduction, password).observeOn(scheduler).flatMapCompletable { userId ->
+        return userRepository.signUp(nickName, introduction, password).observeOn(scheduler).flatMapCompletable { userId ->
             auth.userId = userId
             updateStatus()
             Completable.complete()
@@ -27,7 +23,7 @@ class AuthManagerImpl @Inject constructor(
     }
 
     override fun signIn(nickName: String, password: String): Completable {
-        return userRepository.singIn(nickName, password).observeOn(scheduler).flatMapCompletable { userId ->
+        return userRepository.signIn(nickName, password).observeOn(scheduler).flatMapCompletable { userId ->
             auth.userId = userId
             updateStatus()
             Completable.complete()

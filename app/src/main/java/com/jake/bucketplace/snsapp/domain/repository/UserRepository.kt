@@ -6,6 +6,6 @@ import io.reactivex.Single
 
 interface UserRepository {
     fun getUser(id: Long): Single<User>
-    fun singUp(nickName: String, introduction: String, password: String): Single<Long>
-    fun singIn(nickName: String, password: String): Single<Long>
+    fun signUp(nickName: String, introduction: String, password: String): Single<Long>
+    fun signIn(nickName: String, password: String): Single<Long>
 }

@@ -142,6 +142,14 @@ class CardRepositoryImplTest {
         cardRepository.getCards(false).test()
             .assertErrorMessage(errorMessge)
 
+        verify {
+            cardServiceApi.getCards( inputPage, CardRepositoryImpl.DEFAUALT_PER)
+        }
+
+        verify(exactly = 0) {
+            cardMapper.transform(any())
+        }
+
         val actualTargetPage = cardRepository.page
         Assert.assertEquals(expectedTargetPage, actualTargetPage)
     }
@@ -170,6 +178,14 @@ class CardRepositoryImplTest {
 
         cardRepository.getCards(false).test()
             .assertError(Throwable::class.java)
+
+        verify {
+            cardServiceApi.getCards( inputPage, CardRepositoryImpl.DEFAUALT_PER)
+        }
+
+        verify(exactly = 0) {
+            cardMapper.transform(any())
+        }
 
         val actualTargetPage = cardRepository.page
         Assert.assertEquals(expectedTargetPage, actualTargetPage)
@@ -211,6 +227,9 @@ class CardRepositoryImplTest {
         verify(ordering = Ordering.SEQUENCE) {
             cardServiceApi.getCard(testCardId)
         }
+        verify(exactly = 0) {
+            cardDetailMapper.transform(any())
+        }
     }
 
     @Test
@@ -230,6 +249,9 @@ class CardRepositoryImplTest {
 
         verify(ordering = Ordering.SEQUENCE) {
             cardServiceApi.getCard(testCardId)
+        }
+        verify(exactly = 0) {
+            cardDetailMapper.transform(any())
         }
     }
 

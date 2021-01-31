@@ -31,7 +31,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun singUp(nickName: String, introduction: String, password: String): Single<Long> {
+    override fun signUp(nickName: String, introduction: String, password: String): Single<Long> {
         return userServiceApi.signUp(nickName, introduction, password).subscribeOn(scheduler).flatMap { response ->
             val authResponse = response.body()
             if (response.isSuccessful && authResponse != null ) {
@@ -47,7 +47,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun singIn(nickName: String, password: String): Single<Long> {
+    override fun signIn(nickName: String, password: String): Single<Long> {
         return userServiceApi.signIn(nickName, password).subscribeOn(scheduler).flatMap { response ->
             val authResponse = response.body()
             if (response.isSuccessful && authResponse != null ) {

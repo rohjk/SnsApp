@@ -91,6 +91,9 @@ class HomeRepositoryImplTest {
         verify {
             homeServiceApi.getHome()
         }
+        verify(exactly = 0) {
+            homeMapper.transform(any())
+        }
     }
 
     @Test
@@ -110,6 +113,9 @@ class HomeRepositoryImplTest {
 
         verify {
             homeServiceApi.getHome()
+        }
+        verify(exactly = 0) {
+            homeMapper.transform(any())
         }
     }
 }
