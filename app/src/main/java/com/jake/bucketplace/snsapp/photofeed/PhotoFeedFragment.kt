@@ -52,6 +52,7 @@ class PhotoFeedFragment : Fragment() {
         })
 
         subscribeUI()
+        viewModel.loadCard()
         return binding.root
     }
 

@@ -28,10 +28,6 @@ class PhotoFeedViewModel @Inject constructor(
     val cards: LiveData<List<Card>>
         get() = _cards
 
-    init {
-        loadCard(true)
-    }
-
     override fun onCleared() {
         disposable.clear()
         super.onCleared()
@@ -46,6 +42,10 @@ class PhotoFeedViewModel @Inject constructor(
 
     override fun refresh() {
         loadCard(true)
+    }
+
+    fun loadCard() {
+        loadCard(false)
     }
 
     private fun loadCard(forceUpdate: Boolean) {
