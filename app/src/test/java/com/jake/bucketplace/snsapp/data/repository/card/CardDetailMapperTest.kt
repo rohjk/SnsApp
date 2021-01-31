@@ -23,79 +23,48 @@ class CardDetailMapperTest {
     @MockK
     lateinit var userMapper: UserMapper
 
-    val inputUser = User(
-        id = 1,
-        nickName = "TEST_NICKNAME",
-        introduction = "TEST_INTRODUCTION"
-    )
+    @MockK
+    lateinit var dataUser: User
 
-    val inputCard = Card(
-        id = 1,
-        userId = inputUser.id,
-        description = "TEST_DESC",
-        imageUrl = "TEST_IMAGE_URL"
-    )
+    @MockK
+    lateinit var dataCard: Card
 
-    val inputRecommendCard1 = Card(
-        id = 2,
-        userId = inputUser.id,
-        description = "TEST_DESC2",
-        imageUrl = "TEST_IMAGE_URL2"
-    )
+    @MockK
+    lateinit var domainUser: com.jake.bucketplace.snsapp.domain.model.User
 
-    val inputRecommendCard2 = Card(
-        id = 3,
-        userId = inputUser.id,
-        description = "TEST_DESC3",
-        imageUrl = "TEST_IMAGE_URL3"
-    )
-
-    val inputRecommendCards = listOf(inputRecommendCard1, inputRecommendCard2)
-
-    val expectedUser = com.jake.bucketplace.snsapp.domain.model.User(1, "NickName", "Intro")
-    val expectedCard =
-        com.jake.bucketplace.snsapp.domain.model.Card(1, expectedUser.id, "DES1", "URL1")
-    val expectedRecommendCard1 =
-        com.jake.bucketplace.snsapp.domain.model.Card(2, expectedUser.id, "DESC2", "URL2")
-    val expectedRecommendCard2 =
-        com.jake.bucketplace.snsapp.domain.model.Card(3, expectedUser.id, "DESC3", "URL3")
-
-    val expectedRecommendCars = listOf(expectedRecommendCard1, expectedRecommendCard2)
+    @MockK
+    lateinit var domainCard: com.jake.bucketplace.snsapp.domain.model.Card
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
         cardDetailMapper = CardDetailMapper(cardMapper, userMapper)
+
+        every { userMapper.transform(dataUser) } returns domainUser
+        every { cardMapper.transform(dataCard) } returns domainCard
     }
 
     @Test
     fun testTransform_success() {
         val inputCardDeatilResponse = CardDetailResponse(
             true,
-            inputCard,
-            inputUser,
-            inputRecommendCards,
+            dataCard,
+            dataUser,
+            listOf(dataCard),
             ""
         )
 
         val expectedResult = CardDetail(
-            expectedCard,
-            expectedUser,
-            expectedRecommendCars
+            domainCard,
+            domainUser,
+            listOf(domainCard)
         )
-
-        every { userMapper.transform(inputUser) } returns expectedUser
-        every { cardMapper.transform(inputCard) } returns expectedCard
-        every { cardMapper.transform(inputRecommendCard1) } returns expectedRecommendCard1
-        every { cardMapper.transform(inputRecommendCard2) } returns expectedRecommendCard2
 
         val actual = cardDetailMapper.transform(inputCardDeatilResponse)
 
         verify {
-            cardMapper.transform(inputCard)
-            userMapper.transform(inputUser)
-            cardMapper.transform(inputRecommendCard1)
-            cardMapper.transform(inputRecommendCard2)
+            cardMapper.transform(dataCard)
+            userMapper.transform(dataUser)
         }
 
         Assert.assertEquals(expectedResult, actual)
@@ -105,26 +74,23 @@ class CardDetailMapperTest {
     fun testTransform_empty_recommend_cards_success() {
         val inputCardDeatilResponse = CardDetailResponse(
             true,
-            inputCard,
-            inputUser,
+            dataCard,
+            dataUser,
             emptyList(),
             ""
         )
 
         val expectedResult = CardDetail(
-            expectedCard,
-            expectedUser,
+            domainCard,
+            domainUser,
             emptyList()
         )
-
-        every { userMapper.transform(inputUser) } returns expectedUser
-        every { cardMapper.transform(inputCard) } returns expectedCard
 
         val actual = cardDetailMapper.transform(inputCardDeatilResponse)
 
         verify {
-            cardMapper.transform(inputCard)
-            userMapper.transform(inputUser)
+            cardMapper.transform(dataCard)
+            userMapper.transform(dataUser)
         }
 
         Assert.assertEquals(expectedResult, actual)
