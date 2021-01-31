@@ -54,7 +54,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle_version"
 
     //Unit test
-    testImplementation 'junit:junit:4.+'
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation "androidx.test:core:$rootProject.androidXTestVersion"
+    testImplementation "io.mockk:mockk:$rootProject.mockkVersion"
 
     //UI test
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
