@@ -33,12 +33,7 @@ class CardRepositoryImplTest {
     @MockK
     private lateinit var cardDetailMapper: CardDetailMapper
 
-    private val testUserId: Long = 2
-    private val testUserNickName = "TEST_NICKNAME"
-    private val testUserIntroduction = "TEST_INTRO"
     private val testCardId: Long = 1
-    private val testCardDescription = "TEST_DESC"
-    private val testCardImageUrl = "TEST_URL"
 
     @MockK
     private lateinit var dataUser: User
