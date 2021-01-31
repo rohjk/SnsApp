@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 class CardDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentCardDetailBinding
+    private var _binding: FragmentCardDetailBinding? = null
+    private val binding get() = _binding!!
     private val args: CardDetailFragmentArgs by navArgs()
 
     @Inject
@@ -31,7 +32,7 @@ class CardDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       this.binding = FragmentCardDetailBinding.inflate(inflater, container, false)
+       this._binding = FragmentCardDetailBinding.inflate(inflater, container, false)
         adapter = CardDetailListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@CardDetailFragment
@@ -57,8 +58,8 @@ class CardDetailFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding?.unbind()
         super.onDestroy()
+        _binding = null
     }
 
 }

@@ -14,7 +14,8 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
 
     @Inject
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as SnsApplication).appComponent.inject(this)
-        this.binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        this._binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         this.navController = navHostFragment.navController
@@ -49,8 +50,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        binding?.unbind()
         super.onDestroy()
+        _binding = null
     }
 
     fun signUp() {

@@ -13,7 +13,8 @@ import com.jake.bucketplace.snsapp.databinding.FragmentHomeViewPagerBinding
 
 class HomeViewPagerFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeViewPagerBinding
+    private var _binding: FragmentHomeViewPagerBinding? = null
+    private val binding get() = _binding!!
     private lateinit var tabs: TabLayout
     private lateinit var viewPager: ViewPager2
 
@@ -21,7 +22,7 @@ class HomeViewPagerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        this.binding = FragmentHomeViewPagerBinding.inflate(inflater, container, false)
+        this._binding = FragmentHomeViewPagerBinding.inflate(inflater, container, false)
         binding.apply {
             this@HomeViewPagerFragment.tabs = homeTabs
             this@HomeViewPagerFragment.viewPager = homeViewPager
@@ -45,8 +46,8 @@ class HomeViewPagerFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding?.unbind()
         super.onDestroy()
+        _binding = null
     }
 
 }

@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 class UserDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentUserDetailBinding
+    private var _binding: FragmentUserDetailBinding? = null
+    private val binding get() = _binding!!
     private val args: UserDetailFragmentArgs by navArgs()
     @Inject
     lateinit var viewmodel: UserDetailViewModel
@@ -29,7 +30,7 @@ class UserDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        this.binding = FragmentUserDetailBinding.inflate(inflater, container, false)
+        this._binding = FragmentUserDetailBinding.inflate(inflater, container, false)
         this.adapter = UserDetailListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@UserDetailFragment
@@ -54,8 +55,8 @@ class UserDetailFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding?.unbind()
         super.onDestroy()
+        _binding = null
     }
 
 }

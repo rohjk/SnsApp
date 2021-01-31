@@ -17,7 +17,8 @@ import javax.inject.Inject
 
 class SignUpFragment : Fragment() {
 
-    private lateinit var binding: FragmentSignUpBinding
+    private var _binding: FragmentSignUpBinding? = null
+    private val binding get() = _binding!!
     @Inject
     lateinit var viewModel: SignUpViewModel
     private lateinit var manager: InputMethodManager
@@ -31,7 +32,7 @@ class SignUpFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        this.binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        this._binding = FragmentSignUpBinding.inflate(inflater, container, false)
         binding.apply {
             lifecycleOwner = this@SignUpFragment
             fragment = this@SignUpFragment
@@ -45,8 +46,8 @@ class SignUpFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding?.unbind()
         super.onDestroy()
+        _binding = null
     }
 
     fun subscribe() {

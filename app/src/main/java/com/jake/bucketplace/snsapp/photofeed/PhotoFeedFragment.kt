@@ -16,7 +16,8 @@ import javax.inject.Inject
 
 class PhotoFeedFragment : Fragment() {
 
-    private lateinit var binding: FragmentPhotoFeedBinding
+    private var _binding: FragmentPhotoFeedBinding? = null
+    private val binding get() = _binding!!
     private lateinit var adapterCard: VerticalCardListAdapter
     private lateinit var recyclerView: RecyclerView
     @Inject
@@ -31,7 +32,7 @@ class PhotoFeedFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        this.binding = FragmentPhotoFeedBinding.inflate(inflater, container, false)
+        this._binding = FragmentPhotoFeedBinding.inflate(inflater, container, false)
         this.adapterCard = VerticalCardListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@PhotoFeedFragment
@@ -74,8 +75,8 @@ class PhotoFeedFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding?.unbind()
         super.onDestroy()
+        _binding = null
     }
 
 }
