@@ -13,7 +13,7 @@ class PopularUsersViewHolder constructor(
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: List<User>) {
         binding.apply {
-            itemListTitle.text = binding.root.context.getString(R.string.home_popular_users_title)
+            title = binding.root.context.getString(R.string.home_popular_users_title)
             itemListView.adapter = HorizontalUserListAdapter(item)
             executePendingBindings()
         }

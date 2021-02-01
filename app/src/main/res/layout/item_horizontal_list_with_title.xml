@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="title"
+            type="String" />
+    </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/home_popular_cards_title"/>
+                android:text="@{title}"
+                tools:text="title"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/itemListView"

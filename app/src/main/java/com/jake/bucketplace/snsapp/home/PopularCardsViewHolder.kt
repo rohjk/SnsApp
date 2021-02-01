@@ -13,7 +13,7 @@ class PopularCardsViewHolder constructor(
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: List<Card>) {
         binding.apply {
-            itemListTitle.text = binding.root.context.getString(R.string.home_popular_cards_title)
+            title = binding.root.context.getString(R.string.home_popular_cards_title)
             itemListView.adapter = HorizontalCardListAdapter(item)
             executePendingBindings()
         }
