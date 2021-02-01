@@ -93,3 +93,10 @@ Auth(SignIn, SignUp, SingOut) 관련 비즈니스를 담당합니다.
 또한, 로그인 상태를 관리합니다.
 
 Singletone 단일 객체로, LiveData isSignIn을 통해 MainViewModel 등에서 로그인 상태를 쉽게 업데이트 할 수 있습니다.
+
+
+## Unit Test
+
+Mapper, Repository, ViewModel Unit Test를 작성하였습니다.
+
+JUnit + MockK 라이브러리를 사용했습니다.
