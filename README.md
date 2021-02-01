@@ -65,17 +65,17 @@ ViewHolder : Section 단위로 ViewHolder를 구현하여 사용합니다. DataB
 
 ## Layout 재사용
 
-구성이 동일한 화면을 재사용합니다.
+구성이 동일한 Layout을 재사용합니다.
 
 ```
-item_card_image_with_description
+ItemHorizontalListWithTitleBinding (item_horizontal_list_with_title)
     - HomeFragment
         - 인기 카트 PoPularCardViewHolder
         - 인기 유저 PopularUserViewHolder
     - CardDetailFragment
         - 추천 카드 RecommendCardViewHolder
 
-item_vertical_user
+ItemVerticalUserBinding (item_vertical_user)
     - CardDetailFragment
         - 유저 정보 CardDetailUserDetailViewHolder
     - UserDetailFragment
