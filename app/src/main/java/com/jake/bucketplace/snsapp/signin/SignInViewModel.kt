@@ -23,6 +23,10 @@ class SignInViewModel @Inject constructor(
         authManager.isSignIn
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
+    }
 
     fun signIn(nickName: String, password: String) {
         val isRunning = _isLoading.value ?: false

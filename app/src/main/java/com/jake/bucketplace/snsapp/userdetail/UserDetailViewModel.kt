@@ -28,8 +28,8 @@ class UserDetailViewModel @Inject constructor(
         get() = _user
 
     override fun onCleared() {
-        disposable.clear()
         super.onCleared()
+        disposable.clear()
     }
 
     override fun refresh() {

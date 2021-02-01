@@ -32,8 +32,8 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun onCleared() {
-        disposable.clear()
         super.onCleared()
+        disposable.clear()
     }
 
     fun loadHome() {

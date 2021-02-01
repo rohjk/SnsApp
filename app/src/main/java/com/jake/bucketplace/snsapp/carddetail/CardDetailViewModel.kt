@@ -37,8 +37,8 @@ class CardDetailViewModel @Inject constructor(
     }
 
     override fun onCleared() {
-        disposable.clear()
         super.onCleared()
+        disposable.clear()
     }
 
     private fun loadCardDeatil(id: Long) {

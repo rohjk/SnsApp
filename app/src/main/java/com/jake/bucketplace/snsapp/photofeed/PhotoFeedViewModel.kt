@@ -29,8 +29,8 @@ class PhotoFeedViewModel @Inject constructor(
         get() = _cards
 
     override fun onCleared() {
-        disposable.clear()
         super.onCleared()
+        disposable.clear()
     }
 
     fun loadMore() {
