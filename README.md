@@ -1,5 +1,11 @@
 # SnsApp
-Sns App
+
+노정근
+
+rohjk93@gmail.com
+
+010 - 9949 - 7076
+
 
 ## 기술
 
@@ -9,9 +15,11 @@ Dagger, Retrofit, Navigation, Rx, Glide, JUnit, MockK
 
 Repository Pattern, MVVM, DataBinding, Clean Architecture
 
+
 ## 구조
 
 Single Activity, Multi Fragment
+
 
 MainActivity : FragmentContainer
 
@@ -32,7 +40,7 @@ SignUpFragment : 가입 화면
 
 ## Fragment View 구조
 
-* SignInFragment, SignUpFragment 제외
+** SignInFragment, SignUpFragment 제외 **
 
 ```
 SwipeRefreshLayout
@@ -54,6 +62,7 @@ RecyclerView : 레이아웃에 TextView, List, Button 등을 직접 추가하는
 
 ViewHolder : Section 단위로 ViewHolder를 구현하여 사용합니다. DataBinding을 통해 화면을 빠르게 구성할 수 있으며 Layout 재사용할 수 있습니다.
 
+
 ## Layout 재사용
 
 구성이 동일한 화면을 재사용합니다.
@@ -73,6 +82,7 @@ item_vertical_user
         - 유저 정보 UserDetailUserViewHolder
 ```
 
+
 ## Dagger DI
 
 ApplicationScope, FragmentScope 을 사용합니다.
@@ -81,8 +91,11 @@ ApplicationScope : AuthManager 및 network Client 등
 
 FragmentScope : repository, ViewModel
 
+
 ## AuthManager
 
-로그인 유무를 저장합니다.
+Auth(SignIn, SignUp, SingOut) 관련 비즈니스를 담당합니다.
 
-Singletone 단일 객체로 로그인 상태를 유지하며, LiveData isSignIn을 통해 MainActivity 등에서 로그인 상태를 쉽 업데이트 할 수 있습니다.
+또한, 로그인 상태를 관리합니다.
+
+Singletone 단일 객체로, LiveData isSignIn을 통해 MainViewModel 등에서 로그인 상태를 쉽게 업데이트 할 수 있습니다.
