@@ -16,20 +16,32 @@ Dagger, Retrofit, Navigation, Rx, Glide, JUnit, MockK
 Repository Pattern, MVVM, DataBinding, Clean Architecture
 
 
-## 구조
+## App 구조
 
 Single Activity, Multi Fragment
 
 ```
 MainActivity : FragmentContainer
+
     - HomeViewPagerFragment : ViewPagerContainer (Home, PhotoFeed)
+
         - HomeFragment : 홈 Tab
+
         - PhotoFeedFragment : 사진목록 Tab
+
     - CardDetailFragment : 사진 상세 화면
+
     - UserDetailFragment : 유저 상세 화면
+
     - SignInFragment : 로그인 화면
+
     - SignUpFragment : 가입 화면
 ```
+
+
+## Package 구조
+
+adapter, auth, di, domain, data 및 화면 구성 별 패키지로 나뉘어있습니다
 
 
 ## Fragment View 구조
@@ -63,16 +75,25 @@ ViewHolder : Section 단위로 ViewHolder를 구현하여 사용합니다. DataB
 
 ```
 ItemHorizontalListWithTitleBinding (item_horizontal_list_with_title)
+
     - HomeFragment
+
         - 인기 카트 PoPularCardViewHolder
+
         - 인기 유저 PopularUserViewHolder
+
     - CardDetailFragment
+
         - 추천 카드 RecommendCardViewHolder
 
 ItemVerticalUserBinding (item_vertical_user)
+
     - CardDetailFragment
+
         - 유저 정보 CardDetailUserDetailViewHolder
+
     - UserDetailFragment
+
         - 유저 정보 UserDetailUserViewHolder
 ```
 
@@ -93,6 +114,19 @@ Auth(SignIn, SignUp, SingOut) 관련 비즈니스를 담당합니다.
 또한, 로그인 상태를 관리합니다.
 
 Singletone 단일 객체로, LiveData isSignIn을 통해 MainViewModel 등에서 로그인 상태를 쉽게 업데이트 할 수 있습니다.
+
+
+## Repository
+
+요청 URL의 Path 별로 Repository를 구분하였습니다.
+
+```
+HomeRepository
+
+CardRepository
+
+UserRepository
+```
 
 
 ## Unit Test
