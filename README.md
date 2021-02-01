@@ -20,22 +20,16 @@ Repository Pattern, MVVM, DataBinding, Clean Architecture
 
 Single Activity, Multi Fragment
 
-
+```
 MainActivity : FragmentContainer
-
-HomeViewPagerFragment : ViewPagerContainer (Home, PhotoFeed)
-
-HomeFragment : 홈 Tab
-
-PhotoFeedFragment : 사진목록 Tab
-
-CardDetailFragment : 사진 상세 화면
-
-UserDetailFragment : 유저 상세 화면
-
-SignInFragment : 로그인 화면
-
-SignUpFragment : 가입 화면
+    - HomeViewPagerFragment : ViewPagerContainer (Home, PhotoFeed)
+        - HomeFragment : 홈 Tab
+        - PhotoFeedFragment : 사진목록 Tab
+    - CardDetailFragment : 사진 상세 화면
+    - UserDetailFragment : 유저 상세 화면
+    - SignInFragment : 로그인 화면
+    - SignUpFragment : 가입 화면
+```
 
 
 ## Fragment View 구조
