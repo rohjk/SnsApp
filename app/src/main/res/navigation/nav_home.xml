@@ -5,10 +5,24 @@
     android:id="@+id/nav_home"
     app:startDestination="@id/homeViewPagerFragment">
 
-    <action android:id="@+id/action_global_cardDetailFragment" app:destination="@id/cardDetailFragment"/>
-    <action android:id="@+id/action_global_userDetailFragment" app:destination="@id/userDetailFragment" />
-    <action android:id="@+id/action_global_signUpFragment" app:destination="@id/signUpFragment" app:launchSingleTop="true"/>
-    <action android:id="@+id/action_global_signInFragment" app:destination="@id/signInFragment" app:launchSingleTop="true"/>
+    <action
+        android:id="@+id/action_global_cardDetailFragment"
+        app:destination="@id/cardDetailFragment"/>
+    <action
+        android:id="@+id/action_global_userDetailFragment"
+        app:destination="@id/userDetailFragment" />
+    <action
+        android:id="@+id/action_global_signUpFragment"
+        app:destination="@id/signUpFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@+id/signInFragment"
+        app:popUpToInclusive="true"/>
+    <action
+        android:id="@+id/action_global_signInFragment"
+        app:destination="@id/signInFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@+id/signUpFragment"
+        app:popUpToInclusive="true"/>
 
     <fragment
         android:id="@+id/homeViewPagerFragment"
