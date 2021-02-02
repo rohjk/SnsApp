@@ -12,7 +12,6 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-@FragmentScope
 class HomeViewModel @Inject constructor(
     private val homeRepository: HomeRepository,
     @MainScheduler private val schedulers: Scheduler,

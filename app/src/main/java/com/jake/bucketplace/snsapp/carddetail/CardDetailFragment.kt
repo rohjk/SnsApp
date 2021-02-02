@@ -23,7 +23,7 @@ class CardDetailFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModel: CardDetailViewModel
+    private lateinit var viewModel: CardDetailViewModel
 
     private lateinit var adapter: CardDetailListAdapter
 

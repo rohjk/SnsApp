@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.jake.bucketplace.snsapp.SnsApplication
+import com.jake.bucketplace.snsapp.carddetail.CardDetailViewModel
 import com.jake.bucketplace.snsapp.databinding.FragmentHomeBinding
 import javax.inject.Inject
 
@@ -20,7 +23,9 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: HomeListAdapter
 
     @Inject
-    lateinit var viewModel: HomeViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +37,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this._binding = FragmentHomeBinding.inflate(inflater, container, false)
+        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
         adapter = HomeListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@HomeFragment
