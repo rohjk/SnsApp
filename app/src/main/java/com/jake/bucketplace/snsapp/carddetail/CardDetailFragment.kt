@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
 import com.jake.bucketplace.snsapp.SnsApplication
@@ -19,20 +21,24 @@ class CardDetailFragment : Fragment() {
     private val args: CardDetailFragmentArgs by navArgs()
 
     @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     lateinit var viewModel: CardDetailViewModel
 
     private lateinit var adapter: CardDetailListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity?.application as SnsApplication).appComponent.cardDeatilComponent().create().inject(this)
+        (activity?.application as SnsApplication).appComponent.cardDeatilComponent().create()
+            .inject(this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       this._binding = FragmentCardDetailBinding.inflate(inflater, container, false)
+        this._binding = FragmentCardDetailBinding.inflate(inflater, container, false)
+        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(CardDetailViewModel::class.java)
         adapter = CardDetailListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@CardDetailFragment
@@ -52,7 +58,7 @@ class CardDetailFragment : Fragment() {
                 adapter.sumbitCardDetail(cardDetail)
             }
             onError.observe(viewLifecycleOwner) { errorMessage ->
-                Toast.makeText(context,errorMessage, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
             }
         }
     }

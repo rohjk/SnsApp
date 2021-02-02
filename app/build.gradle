@@ -52,6 +52,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$rootProject.fragmentKtxVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle_version"
+    implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle_version"
 
     //Unit test
     testImplementation "junit:junit:$rootProject.junitVersion"

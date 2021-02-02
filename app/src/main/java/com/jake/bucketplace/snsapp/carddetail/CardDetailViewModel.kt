@@ -12,7 +12,6 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-@FragmentScope
 class CardDetailViewModel @Inject constructor(
     private val cardRepository: CardRepository,
     @MainScheduler private val scheduler: Scheduler,
