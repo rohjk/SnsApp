@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.jake.bucketplace.snsapp.SnsApplication
+import com.jake.bucketplace.snsapp.carddetail.CardDetailViewModel
 import com.jake.bucketplace.snsapp.databinding.FragmentSignUpBinding
 import javax.inject.Inject
 
@@ -20,7 +23,9 @@ class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
     @Inject
-    lateinit var viewModel: SignUpViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var viewModel: SignUpViewModel
     private lateinit var manager: InputMethodManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +38,7 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this._binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java)
         binding.apply {
             lifecycleOwner = this@SignUpFragment
             fragment = this@SignUpFragment

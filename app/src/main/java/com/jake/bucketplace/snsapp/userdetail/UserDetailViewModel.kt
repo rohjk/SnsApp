@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jake.bucketplace.snsapp.BaseViewModel
-import com.jake.bucketplace.snsapp.di.FragmentScope
 import com.jake.bucketplace.snsapp.di.MainScheduler
 import com.jake.bucketplace.snsapp.domain.model.User
 import com.jake.bucketplace.snsapp.domain.repository.UserRepository
@@ -12,7 +11,6 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-@FragmentScope
 class UserDetailViewModel @Inject constructor(
     private val userRepository: UserRepository,
     @MainScheduler private val scheduler: Scheduler,

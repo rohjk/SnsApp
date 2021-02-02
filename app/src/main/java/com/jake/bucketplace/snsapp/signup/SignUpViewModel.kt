@@ -2,14 +2,12 @@ package com.jake.bucketplace.snsapp.signup
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import com.jake.bucketplace.snsapp.BaseViewModel
 import com.jake.bucketplace.snsapp.auth.AuthManager
 import com.jake.bucketplace.snsapp.di.FragmentScope
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-@FragmentScope
 class SignUpViewModel @Inject constructor(
     private val authManager: AuthManager,
     private val disposable: CompositeDisposable

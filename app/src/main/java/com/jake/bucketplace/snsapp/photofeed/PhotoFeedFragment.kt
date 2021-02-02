@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.SnsApplication
 import com.jake.bucketplace.snsapp.adapters.VerticalCardListAdapter
+import com.jake.bucketplace.snsapp.carddetail.CardDetailViewModel
 import com.jake.bucketplace.snsapp.databinding.FragmentPhotoFeedBinding
 import javax.inject.Inject
 
@@ -20,8 +23,11 @@ class PhotoFeedFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapterCard: VerticalCardListAdapter
     private lateinit var recyclerView: RecyclerView
+
     @Inject
-    lateinit var viewModel: PhotoFeedViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var viewModel: PhotoFeedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +39,7 @@ class PhotoFeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this._binding = FragmentPhotoFeedBinding.inflate(inflater, container, false)
+        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(PhotoFeedViewModel::class.java)
         this.adapterCard = VerticalCardListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@PhotoFeedFragment

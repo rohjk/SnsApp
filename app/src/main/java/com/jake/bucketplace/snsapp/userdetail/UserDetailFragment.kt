@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
 import com.jake.bucketplace.snsapp.SnsApplication
+import com.jake.bucketplace.snsapp.carddetail.CardDetailViewModel
 import com.jake.bucketplace.snsapp.databinding.FragmentUserDetailBinding
 import javax.inject.Inject
 
@@ -18,7 +21,9 @@ class UserDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: UserDetailFragmentArgs by navArgs()
     @Inject
-    lateinit var viewmodel: UserDetailViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var viewmodel: UserDetailViewModel
     private lateinit var adapter: UserDetailListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +36,7 @@ class UserDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this._binding = FragmentUserDetailBinding.inflate(inflater, container, false)
+        this.viewmodel = ViewModelProviders.of(this, viewModelFactory).get(UserDetailViewModel::class.java)
         this.adapter = UserDetailListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@UserDetailFragment

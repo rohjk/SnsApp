@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.jake.bucketplace.snsapp.databinding.ActivityMainBinding
+import com.jake.bucketplace.snsapp.userdetail.UserDetailViewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -19,12 +22,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
 
     @Inject
-    lateinit var viewModel: MainViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as SnsApplication).appComponent.inject(this)
         this._binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         this.navController = navHostFragment.navController
