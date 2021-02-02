@@ -100,11 +100,8 @@ ItemVerticalUserBinding (item_vertical_user)
 
 ## Dagger DI
 
-ApplicationScope, FragmentScope 을 사용합니다.
+Daager2를 사용해 객체를 주입합니다.
 
-ApplicationScope : AuthManager 및 network Client 등
-
-FragmentScope : repository, ViewModel
 
 
 ## AuthManager
