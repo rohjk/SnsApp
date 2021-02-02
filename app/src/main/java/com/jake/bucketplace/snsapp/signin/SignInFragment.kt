@@ -12,9 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
-import com.jake.bucketplace.snsapp.R
 import com.jake.bucketplace.snsapp.SnsApplication
-import com.jake.bucketplace.snsapp.carddetail.CardDetailViewModel
 import com.jake.bucketplace.snsapp.databinding.FragmentSignInBinding
 import javax.inject.Inject
 

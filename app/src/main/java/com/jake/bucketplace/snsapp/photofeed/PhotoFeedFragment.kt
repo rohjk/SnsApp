@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jake.bucketplace.snsapp.SnsApplication
 import com.jake.bucketplace.snsapp.adapters.VerticalCardListAdapter
-import com.jake.bucketplace.snsapp.carddetail.CardDetailViewModel
 import com.jake.bucketplace.snsapp.databinding.FragmentPhotoFeedBinding
 import javax.inject.Inject
 

@@ -1,7 +1,6 @@
 package com.jake.bucketplace.snsapp.data.repository.home
 
 import com.jake.bucketplace.snsapp.data.network.HomeServiceApi
-import com.jake.bucketplace.snsapp.data.repository.home.HomeMapper
 import com.jake.bucketplace.snsapp.di.IOScheduler
 import com.jake.bucketplace.snsapp.domain.model.Home
 import com.jake.bucketplace.snsapp.domain.repository.HomeRepository

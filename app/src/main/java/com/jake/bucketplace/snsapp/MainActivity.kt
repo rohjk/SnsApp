@@ -2,16 +2,13 @@ package com.jake.bucketplace.snsapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.jake.bucketplace.snsapp.databinding.ActivityMainBinding
-import com.jake.bucketplace.snsapp.userdetail.UserDetailViewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
