@@ -17,11 +17,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(HomeViewModel::class)
-    abstract fun bindHomeViewModel(vm: HomeViewModel) : ViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(PhotoFeedViewModel::class)
     abstract fun bindPhotoFeedViewModel(vm: PhotoFeedViewModel) : ViewModel
 

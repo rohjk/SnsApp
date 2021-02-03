@@ -4,6 +4,7 @@ import com.jake.bucketplace.snsapp.carddetail.CardDetailFragment
 import com.jake.bucketplace.snsapp.di.FragmentScope
 import dagger.Subcomponent
 
+@FragmentScope
 @Subcomponent(modules = [CardDetailModule::class])
 interface CardDetailComponent {
     @Subcomponent.Factory

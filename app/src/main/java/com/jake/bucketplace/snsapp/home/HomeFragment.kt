@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
@@ -24,7 +25,7 @@ class HomeFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +37,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this._binding = FragmentHomeBinding.inflate(inflater, container, false)
-        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
         adapter = HomeListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@HomeFragment
