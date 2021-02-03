@@ -5,7 +5,7 @@ import com.jake.bucketplace.snsapp.home.di.HomeComponent
 import com.jake.bucketplace.snsapp.photofeed.di.PhotoFeedComponent
 import com.jake.bucketplace.snsapp.signin.di.SignInComponent
 import com.jake.bucketplace.snsapp.signup.SignUpComponent
-import com.jake.bucketplace.snsapp.userdetail.UserDetailComponent
+import com.jake.bucketplace.snsapp.userdetail.di.UserDetailComponent
 import dagger.Module
 
 @Module(

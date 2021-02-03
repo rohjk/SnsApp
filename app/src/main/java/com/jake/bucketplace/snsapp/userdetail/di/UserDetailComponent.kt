@@ -1,10 +1,11 @@
-package com.jake.bucketplace.snsapp.userdetail
+package com.jake.bucketplace.snsapp.userdetail.di
 
 import com.jake.bucketplace.snsapp.di.FragmentScope
+import com.jake.bucketplace.snsapp.userdetail.UserDetailFragment
 import dagger.Subcomponent
 
 @FragmentScope
-@Subcomponent
+@Subcomponent(modules = [UserDetailModule::class])
 interface UserDetailComponent {
     @Subcomponent.Factory
     interface Factory {

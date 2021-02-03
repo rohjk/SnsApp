@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
@@ -22,7 +23,7 @@ class UserDetailFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewmodel: UserDetailViewModel
+    private val viewmodel: UserDetailViewModel by viewModels { viewModelFactory }
     private lateinit var adapter: UserDetailListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,6 @@ class UserDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this._binding = FragmentUserDetailBinding.inflate(inflater, container, false)
-        this.viewmodel = ViewModelProviders.of(this, viewModelFactory).get(UserDetailViewModel::class.java)
         this.adapter = UserDetailListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@UserDetailFragment
