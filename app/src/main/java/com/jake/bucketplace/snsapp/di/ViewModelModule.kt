@@ -14,10 +14,6 @@ import dagger.multibindings.IntoMap
 
 @Module
 abstract class ViewModelModule {
-    @Binds
-    @IntoMap
-    @ViewModelKey(CardDetailViewModel::class)
-    abstract fun bindCardDetailViewModel(vm: CardDetailViewModel) : ViewModel
 
     @Binds
     @IntoMap

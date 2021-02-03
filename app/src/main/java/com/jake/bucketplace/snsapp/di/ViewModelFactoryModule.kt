@@ -1,7 +1,6 @@
 package com.jake.bucketplace.snsapp.di
 
 import androidx.lifecycle.ViewModelProvider
-import com.jake.bucketplace.snsapp.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 

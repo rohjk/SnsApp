@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
@@ -23,7 +24,7 @@ class CardDetailFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: CardDetailViewModel
+    private val viewModel: CardDetailViewModel by viewModels { viewModelFactory }
 
     private lateinit var adapter: CardDetailListAdapter
 
@@ -38,7 +39,6 @@ class CardDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this._binding = FragmentCardDetailBinding.inflate(inflater, container, false)
-        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(CardDetailViewModel::class.java)
         adapter = CardDetailListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@CardDetailFragment

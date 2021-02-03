@@ -1,6 +1,6 @@
 package com.jake.bucketplace.snsapp.di
 
-import com.jake.bucketplace.snsapp.carddetail.CardDetailComponent
+import com.jake.bucketplace.snsapp.carddetail.di.CardDetailComponent
 import com.jake.bucketplace.snsapp.home.HomeComponent
 import com.jake.bucketplace.snsapp.photofeed.PhotoFeedComponent
 import com.jake.bucketplace.snsapp.signin.SignInComponent
