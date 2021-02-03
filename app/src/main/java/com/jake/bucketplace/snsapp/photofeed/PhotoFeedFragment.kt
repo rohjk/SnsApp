@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
@@ -26,7 +27,7 @@ class PhotoFeedFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: PhotoFeedViewModel
+    private val viewModel: PhotoFeedViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,6 @@ class PhotoFeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this._binding = FragmentPhotoFeedBinding.inflate(inflater, container, false)
-        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(PhotoFeedViewModel::class.java)
         this.adapterCard = VerticalCardListAdapter(emptyList())
         binding.apply {
             lifecycleOwner = this@PhotoFeedFragment
