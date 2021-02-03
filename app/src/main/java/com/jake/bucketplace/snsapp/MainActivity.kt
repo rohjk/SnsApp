@@ -2,6 +2,7 @@ package com.jake.bucketplace.snsapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -21,13 +22,12 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as SnsApplication).appComponent.inject(this)
         this._binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         this.navController = navHostFragment.navController
