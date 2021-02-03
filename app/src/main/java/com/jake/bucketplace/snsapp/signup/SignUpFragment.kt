@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
@@ -23,7 +24,7 @@ class SignUpFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: SignUpViewModel
+    private val viewModel: SignUpViewModel by viewModels { viewModelFactory }
     private lateinit var manager: InputMethodManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,6 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         this._binding = FragmentSignUpBinding.inflate(inflater, container, false)
-        this.viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java)
         binding.apply {
             lifecycleOwner = this@SignUpFragment
             fragment = this@SignUpFragment
